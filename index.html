@@ -200,9 +200,9 @@ table.sc{width:100%; border-collapse:collapse; font-size:14px; min-width:640px}
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="word" href="#brief">the partner playbook<span class="dot">.</span></a>
+    <a class="word" href="#" id="word">the partner playbook<span class="dot">.</span></a>
     <nav class="tabs" aria-label="Views">
-      <a href="#brief" id="tab-brief">Sample brief</a>
+      <a href="#brief" id="tab-brief">Brief</a>
       <a href="#build" id="tab-build">New brief</a>
     </nav>
   </header>
@@ -553,7 +553,15 @@ function copyText(){
 
 document.getElementById("types").innerHTML = Object.entries(TYPES).map(([k,t]) =>
   `<label><input type="radio" name="type" id="type-${k}" value="${k}"${k==="crm"?" checked":""}><b>${t.label}</b><span>${t.sub}</span></label>`).join("");
-document.getElementById("f-plat").value = "ChatGPT Ads";
+const SHARED = location.pathname.includes("/share/");
+let built = SHARED;
+if (SHARED) {
+  document.getElementById("f-plat").value = "ChatGPT Ads";
+  document.title = "ChatGPT Ads × Klaviyo Launch Brief";
+} else {
+  document.getElementById("reset").hidden = true;
+  document.getElementById("tab-brief").hidden = true;
+}
 document.getElementById("form").addEventListener("submit", e => {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
@@ -563,6 +571,7 @@ document.getElementById("form").addEventListener("submit", e => {
     tier: document.querySelector('input[name="tier"]:checked').value,
     date: v("f-date") || EXAMPLE.date
   };
+  built = true; document.getElementById("tab-brief").hidden = false;
   renderBrief(); location.hash = "brief";
 });
 document.getElementById("reset").addEventListener("click", () => {
@@ -572,7 +581,8 @@ document.getElementById("reset").addEventListener("click", () => {
 });
 
 function route(){
-  const v = location.hash === "#build" ? "build" : "brief";
+  const h = location.hash;
+  const v = h === "#build" ? "build" : (h === "#brief" && built) ? "brief" : SHARED ? "brief" : "build";
   document.getElementById("view-brief").hidden = v !== "brief";
   document.getElementById("view-build").hidden = v !== "build";
   ["brief","build"].forEach(n => { const t = document.getElementById("tab-" + n); n === v ? t.setAttribute("aria-current","page") : t.removeAttribute("aria-current"); });
