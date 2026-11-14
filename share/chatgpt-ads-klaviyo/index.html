@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Partner Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one calm editorial column in the playbook's world — serif voice, warm paper, a single violet accent. */
+:root{
+  --paper:#f5f4f0; --card:#ffffff; --ink:#151a2d; --muted:#6b7488; --hair:#e6e3dc;
+  --violet:#5546f0; --violet-soft:#efedff; --sand:#f3efe7; --sand-ink:#7a6a52;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --shadow:0 1px 2px rgba(21,26,45,.04), 0 6px 24px rgba(21,26,45,.05);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper); color:var(--ink); font:15px/1.6 var(--sans); -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px 80px}
+h1,h2,h3{font-family:var(--serif); font-weight:400; margin:0; text-wrap:balance; letter-spacing:-0.01em}
+.dot{color:var(--violet)}
+.eyebrow{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+
+/* top */
+.top{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding:36px 0 44px}
+.word{font-family:var(--serif); font-size:30px; line-height:1; text-decoration:none; color:var(--ink); letter-spacing:-0.02em}
+.tabs{display:flex; gap:22px}
+.tabs a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:500; padding:4px 0; border-bottom:1.5px solid transparent}
+.tabs a[aria-current="page"]{color:var(--ink); border-bottom-color:var(--violet)}
+a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:6px}
+
+/* hero */
+.hero{margin-bottom:40px}
+.hero h1{font-size:clamp(38px,6.4vw,64px); line-height:1.02; margin:14px 0 18px}
+.hero h1 .x{color:var(--violet); padding:0 .12em; font-style:italic}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; color:var(--muted); font-size:14px}
+.meta span{display:flex; align-items:center; gap:8px}
+.meta span + span::before{content:""; width:3px; height:3px; border-radius:50%; background:var(--muted); margin-left:-12px}
+.tag{display:inline-block; font-size:12px; font-weight:500; color:var(--violet); background:var(--violet-soft); border-radius:999px; padding:3px 10px}
+.hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px}
+.btn{font:500 14px var(--sans); border-radius:999px; padding:11px 20px; cursor:pointer; border:1px solid var(--hair); background:var(--card); color:var(--ink); text-decoration:none; display:inline-block; box-shadow:var(--shadow)}
+.btn.primary{background:var(--ink); border-color:var(--ink); color:#fff}
+.btn:hover{border-color:var(--ink)}
+.btn.primary:hover{background:var(--violet); border-color:var(--violet)}
+
+/* the line */
+.line{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:40px 40px 34px; margin-bottom:14px}
+.line blockquote{margin:12px 0 28px; font-family:var(--serif); font-size:clamp(25px,3.4vw,34px); line-height:1.22; letter-spacing:-0.015em}
+.why{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; border-top:1px solid var(--hair); padding-top:22px}
+.why div{font-size:14px; color:var(--muted)}
+.why b{display:block; font-family:var(--serif); font-weight:400; font-size:22px; color:var(--violet); line-height:1; margin-bottom:8px}
+.principles{display:flex; flex-wrap:wrap; gap:6px 22px; padding:14px 6px 0; margin-bottom:56px; font-size:13px; color:var(--muted)}
+.principles span::before{content:"✓"; color:var(--violet); margin-right:7px}
+
+/* sections */
+.sec{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 18px}
+.sec h2{font-size:32px}
+.legend{display:flex; gap:16px; font-size:13px; color:var(--muted)}
+.legend i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:7px}
+
+/* hooks */
+.hooks{display:grid; gap:12px; margin-bottom:60px}
+.hook{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:22px 26px; display:grid; grid-template-columns:170px 1fr 1fr; gap:18px 22px; align-items:start}
+.hook .name h3{font-size:21px; line-height:1.15}
+.hook .name span{display:block; margin-top:6px; font-size:12.5px; color:var(--muted)}
+.v{font-size:14.5px; line-height:1.5}
+.v small{display:block; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; margin-bottom:6px}
+.v.pl small{color:var(--violet)}
+.v.pt small{color:var(--sand-ink)}
+.v.pl{border-left:2px solid var(--violet); padding-left:14px}
+.v.pt{border-left:2px solid #d9cdb8; padding-left:14px}
+.angle{grid-column:2 / -1; background:var(--sand); border-radius:12px; padding:10px 14px; font-size:13.5px; color:#4f4a40}
+.angle b{font-weight:600; color:var(--ink)}
+
+/* timeline */
+.tl{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:30px 28px 26px; margin-bottom:60px; overflow-x:auto}
+.track{position:relative; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(96px,1fr); gap:12px; min-width:min-content}
+.track::before{content:""; position:absolute; left:4px; right:4px; top:5px; height:1px; background:var(--hair)}
+.ms{position:relative; padding-top:24px}
+.ms::before{content:""; position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%; background:var(--card); border:1.5px solid var(--ink)}
+.ms.launch::before{background:var(--violet); border-color:var(--violet); width:15px; height:15px; top:-2px; box-shadow:0 0 0 5px var(--violet-soft)}
+.ms.after::before{border-color:var(--violet)}
+.ms .d{font-family:var(--serif); font-size:19px; line-height:1.1}
+.ms .r{font-size:12px; color:var(--muted); margin:2px 0 8px; font-variant-numeric:tabular-nums}
+.ms .w{font-size:13.5px; font-weight:500; line-height:1.35; margin-bottom:6px}
+.ms .o{font-size:12px; color:var(--muted); line-height:1.4}
+
+/* scorecard */
+.kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:40px}
+.kpi{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px; display:grid; grid-template-columns:auto 1fr; gap:4px 16px}
+.kpi .n{font-family:var(--serif); font-size:34px; line-height:1; color:var(--violet); grid-row:span 3}
+.kpi h3{font-size:20px; line-height:1.2}
+.kpi p{margin:0; color:var(--muted); font-size:13.5px}
+.kpi .c{font-size:12px; font-weight:500; color:var(--ink); margin-top:6px}
+.status{font-size:13px; color:var(--violet); min-height:1em; text-align:center}
+
+/* builder */
+.form{display:grid; gap:30px; max-width:720px}
+.form h1{font-size:clamp(36px,5.5vw,54px); line-height:1.05}
+.form p.sub{margin:-16px 0 0; font-size:19px; color:var(--muted)}
+.field{display:grid; gap:12px}
+.field > label, .field .lab{font-family:var(--serif); font-size:24px; line-height:1.2}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+input[type=text], input[type=date]{font:16px var(--sans); padding:16px 18px; border-radius:16px; border:1px solid var(--hair); background:var(--card); color:var(--ink); width:100%; box-shadow:var(--shadow)}
+input::placeholder{color:#97a0b3}
+.opts{display:grid; gap:10px}
+.opts.five{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.opts.three{grid-template-columns:repeat(3,1fr)}
+.opts label{background:var(--card); border:1px solid var(--hair); border-radius:16px; padding:14px 16px; cursor:pointer; box-shadow:var(--shadow); display:grid; gap:2px; position:relative}
+.opts input{position:absolute; opacity:0; pointer-events:none}
+.opts label:has(input:checked){border-color:var(--violet); box-shadow:0 0 0 3px var(--violet-soft)}
+.opts label:has(input:focus-visible){outline:2px solid var(--violet); outline-offset:3px}
+.opts b{font-weight:500; font-size:15px}
+.opts span{font-size:12.5px; color:var(--muted)}
+.form .hero-actions{margin-top:0}
+
+@media (max-width:760px){
+  .hook{grid-template-columns:1fr; padding:20px}
+  .angle{grid-column:auto}
+  .why, .kpis, .row, .opts.three{grid-template-columns:1fr}
+  .line{padding:28px 24px}
+}
+@media (prefers-reduced-motion: no-preference){ .view{animation:in .3s ease both} @keyframes in{from{opacity:.5; transform:translateY(4px)} to{opacity:1; transform:none}} }
+[hidden]{display:none !important}
+
+/* sample brief: prioritization, drafts, plays, scorecard */
+.fit{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:30px 34px; margin-bottom:56px; display:grid; grid-template-columns:220px 1fr; gap:30px; align-items:start}
+.verdict .big{font-family:var(--serif); font-size:64px; line-height:.9; color:var(--violet); font-variant-numeric:tabular-nums}
+.verdict .big small{font-size:22px; color:var(--muted)}
+.verdict .t{font-family:var(--serif); font-size:22px; margin-top:12px}
+.verdict p{margin:6px 0 0; font-size:13.5px; color:var(--muted)}
+.factors{display:grid; gap:16px}
+.factor{display:grid; grid-template-columns:150px 1fr 34px; gap:6px 16px; align-items:center}
+.factor .nm{font-weight:500; font-size:14px}
+.bar{height:6px; border-radius:6px; background:var(--violet-soft); overflow:hidden}
+.bar i{display:block; height:100%; background:var(--violet); border-radius:6px}
+.factor .sc{font-family:var(--serif); font-size:18px; text-align:right; font-variant-numeric:tabular-nums}
+.factor .why2{grid-column:2 / -1; font-size:13px; color:var(--muted); line-height:1.45}
+.idea{font-family:var(--serif); font-size:19px; line-height:1.4; color:var(--ink); border-top:1px solid var(--hair); margin-top:24px; padding-top:20px}
+.idea span{display:block; font-family:var(--sans); font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px}
+
+.asset{background:var(--card); border-radius:20px; box-shadow:var(--shadow); padding:26px 28px; display:grid; grid-template-columns:1fr 1.25fr; gap:26px; margin-bottom:12px}
+.asset .who3{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:12.5px; color:var(--muted)}
+.pill{font-size:11.5px; font-weight:600; letter-spacing:.04em; border-radius:999px; padding:2px 9px}
+.pill.pl{background:var(--violet-soft); color:var(--violet)}
+.pill.pt{background:var(--sand); color:var(--sand-ink)}
+.asset h3{font-size:25px; line-height:1.15; margin:10px 0 12px}
+.asset .ang{font-size:14px; color:var(--ink)}
+.asset .ang b{display:block; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:4px}
+.draft{background:var(--paper); border:1px solid var(--hair); border-radius:14px; padding:18px 20px; font-size:14px; line-height:1.6; white-space:pre-line; position:relative}
+.draft .lbl2{display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; white-space:normal}
+.mini{font:500 12px var(--sans); border:1px solid var(--hair); background:var(--card); border-radius:999px; padding:4px 11px; cursor:pointer; color:var(--ink); text-transform:none; letter-spacing:0}
+.mini:hover{border-color:var(--violet); color:var(--violet)}
+.draft + .draft{margin-top:10px}
+
+.plays{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:60px}
+.play{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px}
+.play .k{font-size:12px; font-weight:500; color:var(--violet)}
+.play h3{font-size:21px; margin:6px 0 8px; line-height:1.2}
+.play p{margin:0; font-size:14px; color:var(--muted)}
+
+.sc-wrap{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:10px 8px 8px; margin-bottom:12px; overflow-x:auto}
+table.sc{width:100%; border-collapse:collapse; font-size:14px; min-width:640px}
+.sc th{font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); text-align:left; padding:14px 18px 10px}
+.sc td{padding:14px 18px; border-top:1px solid var(--hair); vertical-align:top}
+.sc td.num, .sc th.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sc td.num{font-family:var(--serif); font-size:18px}
+.sc td small{display:block; color:var(--muted); font-size:12.5px; margin-top:2px}
+.sc .grp td{background:var(--paper); font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--violet); padding:8px 18px}
+.rules{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:12px}
+.rule{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:18px 20px; border-top:3px solid var(--violet)}
+.rule.fix{border-top-color:#c99a3b} .rule.down{border-top-color:#a3a9b6}
+.rule h3{font-size:20px; margin-bottom:6px}
+.rule p{margin:0; font-size:13.5px; color:var(--muted)}
+.rule p b{color:var(--ink); font-weight:500}
+.footnote{font-size:12.5px; color:var(--muted); margin:0 0 40px 6px}
+@media (max-width:760px){
+  .fit, .asset, .plays, .rules{grid-template-columns:1fr}
+  .factor{grid-template-columns:1fr 34px} .factor .bar{grid-column:1 / -1; grid-row:2} .factor .why2{grid-column:1 / -1}
+}
+
+.grp-block{margin-bottom:36px}
+.grp-head{padding:6px 6px 16px}
+.grp-head h3{font-size:26px; margin:10px 0 4px}
+.grp-head p{margin:0; color:var(--muted); font-size:14.5px; max-width:640px}
+.grp-block.oa .asset{border-left:3px solid var(--violet)}
+.grp-block.pt .asset{border-left:3px solid #d9cdb8}
+
+.chan{display:inline-block; font-size:13px; font-weight:600; letter-spacing:.01em; border-radius:8px; padding:5px 10px; margin-bottom:8px}
+.grp-block.oa .chan{color:var(--violet); background:var(--violet-soft)}
+.grp-block.pt .chan{color:#8a5a1c; background:#f6ead8}
+.grp-block.oa h3{color:var(--ink)}
+.grp-block.pt .asset h3{color:#5a4320}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="word" href="#" id="word">the partner playbook<span class="dot">.</span></a>
+    <nav class="tabs" aria-label="Views">
+      <a href="#brief" id="tab-brief">Brief</a>
+      <a href="#build" id="tab-build">New brief</a>
+    </nav>
+  </header>
+
+  <main id="view-brief" class="view"></main>
+
+  <main id="view-build" class="view" hidden>
+    <form class="form" id="form" novalidate>
+      <div>
+        <h1>Plan a partner launch<span class="dot">.</span></h1>
+      </div>
+      <p class="sub">Positioning, hooks in both voices, a dated timeline, and a scorecard, in minutes.</p>
+      <div class="row">
+        <div class="field"><label for="f-plat">What's the platform?</label><input type="text" id="f-plat" placeholder="e.g. ChatGPT Ads" maxlength="40" autocomplete="off"></div>
+        <div class="field"><label for="f-name">Who's the partner?</label><input type="text" id="f-name" placeholder="e.g. Klaviyo" maxlength="40" autocomplete="off"></div>
+      </div>
+      <div class="field"><label for="f-cust">Who are their customers?</label><input type="text" id="f-cust" placeholder="e.g. consumer brands, app marketers, agency media teams" maxlength="50" autocomplete="off"></div>
+      <div class="field"><span class="lab" id="types-lab">What kind of partner?</span><div class="opts five" id="types" role="radiogroup" aria-labelledby="types-lab"></div></div>
+      <div class="field"><span class="lab" id="tier-lab">How big is the launch?</span>
+        <div class="opts three" role="radiogroup" aria-labelledby="tier-lab">
+          <label><input type="radio" name="tier" id="tier-1" value="1" checked><b>Full launch</b><span>Press, webinar, case study, event</span></label>
+          <label><input type="radio" name="tier" id="tier-2" value="2"><b>Standard</b><span>Blog, social, webinar, enablement</span></label>
+          <label><input type="radio" name="tier" id="tier-3" value="3"><b>Light</b><span>Help article, post, sales line</span></label>
+        </div></div>
+      <div class="field" style="max-width:340px"><label for="f-date">When does it launch?</label><input type="date" id="f-date"></div>
+      <div class="hero-actions">
+        <button class="btn primary" type="submit">Build the brief</button>
+        <button class="btn" type="button" id="reset">Load the sample</button>
+      </div>
+    </form>
+  </main>
+</div>
+<script>
+const TYPES = {
+  crm:{label:"CRM", sub:"Customer data & campaigns",
+    line:"Plan, launch, and measure {X} from {P}, using the customer data you already manage there.",
+    why:["Create and manage campaigns without leaving {P}","See {X} results next to email, SMS, and your other channels","Send conversions back securely, with results reported in aggregate"],
+    hooks:{
+      blog:{oa:"Bringing {X} to {P}",pt:"{X}, now in {P}",angle:"Lead with the workflow. One place to choose an audience, launch, and see results."},
+      social:{oa:"{C} can now create and manage {X} campaigns directly in {P}. A new channel shouldn't require a new way of working.",pt:"Your customers are looking for ideas before they buy. Now you can be there with {X}, right from {P}.",angle:"Post the same morning from both accounts, with a short product walkthrough."},
+      webinar:{oa:"Getting started with {X} in {P}",pt:"Your first {X} campaign, built in {P}",angle:"Live build of one campaign from start to finish, then a Q&A on measurement."},
+      cs:{oa:"How an early {P} customer added {X} to its existing programs",pt:"One workflow, one more channel: an early {X} story",angle:"Lead with how little changed for the team, then the first results next to existing channels."},
+      sales:{oa:"If a customer already runs campaigns in {P}, {X} is one more channel in the same workflow.",pt:"Already live in {P}? Add {X} without new tools or new logins.",angle:"Give partner sellers one sentence, one demo, and one answer on privacy."},
+      help:{oa:"Connect {X} to {P}",pt:"This guide explains how to connect your {X} account to {P}, create a campaign, and view results.",angle:"Ship it on launch day so every announcement has a place to send people."},
+      event:{oa:"A live build on stage: a {X} campaign set up from {P}",pt:"See {X} in {P}, live",angle:"Use the partner's own customer event, where the room already uses {P}."}
+    },
+    kpis:[["Connected advertisers","{P} accounts that link {X}","Weekly"],["First campaigns launched","Connected accounts that go live within 30 days","Day 30"],["Spend from {P} accounts","Total and growth, month over month","Monthly"],["Advertisers new to {X}","Share of connected accounts that had never run {X}","Day 60"]]
+  },
+  measurement:{label:"Measurement", sub:"Attribution & incrementality",
+    line:"Understand what's driving results on {X} with {P}, the measurement tool {C} already rely on.",
+    why:["Add {X} to the same reports as every other channel","Get independent, third-party results","Results are aggregated, and conversations stay private"],
+    hooks:{
+      blog:{oa:"Measure {X} with {P}",pt:"{P} now supports {X}",angle:"Lead with the question advertisers ask most: what did this channel actually drive?"},
+      social:{oa:"Advertisers can now measure {X} in {P}, alongside the rest of their media.",pt:"{X} is now a channel in {P}. Same reports, one more line.",angle:"Pair the post with a screenshot of the report view, not a logo lockup."},
+      webinar:{oa:"Measuring {X}: setup and early learnings with {P}",pt:"How to read {X} results in {P}",angle:"Bring a measurement lead from each side to walk through a real report."},
+      cs:{oa:"What independent measurement showed for an early {X} advertiser",pt:"{X}, measured by {P}",angle:"Lead with one result {P} measured independently. That is the proof other advertisers need."},
+      sales:{oa:"Customers who measure in {P} can see {X} results there too, with no extra setup on their side.",pt:"Your clients asked how to measure {X}. It's in {P} now.",angle:"Arm customer success teams first. They talk to advertisers every week."},
+      help:{oa:"Set up {X} measurement with {P}",pt:"This guide explains how to connect {X} to {P} and where results appear in your reports.",angle:"Include what data is shared and what is not. That answers the first objection."},
+      event:{oa:"A joint session on measuring a new channel",pt:"New channel, same rigor: {X} in {P}",angle:"Use an industry measurement event, not a product event."}
+    },
+    kpis:[["Advertisers measuring in {P}","Accounts with the integration connected","Weekly"],["Spend growth, connected vs. not","Do measured advertisers grow faster?","Day 60"],["Published proof points","Results cleared for use in case studies","Quarterly"],["Partner team reach","Customer success managers trained","Day 14"]]
+  },
+  buying:{label:"Buying platform", sub:"Plan & buy media",
+    line:"Plan and buy {X} alongside your other channels, in {P}, where your team already works.",
+    why:["Add {X} to existing media plans and budgets","Use the bidding and reporting {C} already know","{X} keeps the same standards for every buyer"],
+    hooks:{
+      blog:{oa:"{X} is now available in {P}",pt:"Buy {X} in {P}",angle:"Lead with access. More businesses can now buy {X} through tools they already use."},
+      social:{oa:"Teams using {P} can now add {X} to their plans.",pt:"{X}, now in your {P} media plan.",angle:"Target media buyers. Keep it short and show the setup screen."},
+      webinar:{oa:"Adding {X} to your media plan with {P}",pt:"Planning for a new channel: {X} in {P}",angle:"Cover budgets, bidding, and what a first test should look like."},
+      cs:{oa:"How one team added {X} to its plan in {P}",pt:"A first {X} test, run in {P}",angle:"Lead with how the test was set up, then results next to other channels."},
+      sales:{oa:"Clients can test {X} from the same plan, budget, and reports they use today.",pt:"Add {X} to the next plan you build in {P}.",angle:"Give sellers a test-budget recommendation, not just a pitch."},
+      help:{oa:"Buy {X} in {P}",pt:"This guide explains how to set up {X} campaigns in {P}, choose bidding, and view reporting.",angle:"Link it from every launch asset and the partner's own help center."},
+      event:{oa:"A planning session for teams testing {X}",pt:"Plan your first {X} test in {P}",angle:"Run it at an industry media event with a small group of buyers."}
+    },
+    kpis:[["Advertisers activated in {P}","Accounts with a live {X} campaign","Weekly"],["Spend through {P}","Total and month-over-month growth","Monthly"],["Repeat campaigns","Advertisers who run a second campaign","Day 60"],["Partner teams trained","Sellers and account teams enabled","Day 14"]]
+  },
+  commerce:{label:"Commerce", sub:"Catalog & storefront",
+    line:"Help people discover your products on {X}, using the catalog you already manage in {P}.",
+    why:["Keep product details, prices, and availability current","Create ads from the products you already sell","See results next to your store's sales"],
+    hooks:{
+      blog:{oa:"Bringing {P} catalogs to {X}",pt:"Your {P} store, now on {X}",angle:"Lead with accuracy. People get current details, and merchants don't re-enter anything."},
+      social:{oa:"{C} can now create {X} campaigns from their {P} catalog.",pt:"Your products, discovered on {X}. Set up from {P} in minutes.",angle:"Show one real product going from catalog to ad."},
+      webinar:{oa:"Getting started with {X} for {P} merchants",pt:"From catalog to campaign: {X} in {P}",angle:"Built for small teams: one setup, one first campaign, one report."},
+      cs:{oa:"How a {P} merchant reached new customers with {X}",pt:"A small brand's first {X} campaign",angle:"Pick a small brand with a clear product story. New-customer share leads."},
+      sales:{oa:"Merchants can launch {X} campaigns from the catalog they already keep in {P}.",pt:"Your catalog is ready. Turn on {X}.",angle:"Bundle it with onboarding offers where the partner already runs them."},
+      help:{oa:"Connect your {P} catalog to {X}",pt:"This guide explains how to connect your {P} store, choose products, and launch a campaign.",angle:"Keep it short. Most readers are founders doing it themselves."},
+      event:{oa:"Merchant office hours: first campaigns on {X}",pt:"Launch your first {X} campaign, live with our team",angle:"Run small virtual sessions instead of one big keynote."}
+    },
+    kpis:[["Merchants connected","Stores that link {P} to {X}","Weekly"],["Catalogs live","Merchants with current product data synced","Day 14"],["First campaigns","Connected merchants with a live campaign","Day 30"],["New-customer share","Orders from first-time buyers, reported in aggregate","Day 60"]]
+  },
+  data:{label:"Data & conversions", sub:"Signals & audiences",
+    line:"Send conversions from {P} to {X} securely, so campaigns can improve over time.",
+    why:["Use the conversion data {C} already collect","Help {X} show more relevant ads","Advertisers see aggregate results, and conversations stay private"],
+    hooks:{
+      blog:{oa:"Send conversions to {X} with {P}",pt:"{P} now connects to {X}",angle:"Lead with better outcomes, then explain in one paragraph how the data stays protected."},
+      social:{oa:"Advertisers can now send conversions from {P} to {X}, with no new code.",pt:"Your conversion data, now working on {X}.",angle:"Aim at marketing ops teams. Show the setup in three screens."},
+      webinar:{oa:"Stronger signals for {X} with {P}",pt:"Set up {X} conversions in {P}",angle:"Technical audience. Walk through setup and what changes in reporting."},
+      cs:{oa:"How better conversion data improved an early {X} campaign",pt:"From {P} to better {X} results",angle:"Lead with a before-and-after on one metric the advertiser cares about."},
+      sales:{oa:"Customers already sending conversions from {P} can add {X} as a destination.",pt:"One more destination: {X}.",angle:"Position it as an add-on to setups customers already run."},
+      help:{oa:"Send conversions to {X} from {P}",pt:"This guide explains how to add {X} as a destination in {P} and check that events arrive.",angle:"Include a short checklist for confirming events are arriving correctly."},
+      event:{oa:"A technical session on conversion data for a new channel",pt:"Connecting {X}, live",angle:"Run it at the partner's developer or ops event."}
+    },
+    kpis:[["Advertisers sending conversions","Accounts with {X} added as a destination","Weekly"],["Share of spend with conversion data","How much of total spend is backed by conversions","Monthly"],["Performance change","Aggregate results before and after connecting","Day 60"],["Setup time","Median time from start to first event received","Day 14"]]
+  }
+};
+
+const ASSETS = {
+  blog:["Blog post","Launch day"], social:["Social post","Launch day"], webinar:["Webinar","Launch + 2 weeks"],
+  cs:["Case study","Launch + 60 days"], sales:["Sales line","Before launch"], help:["Help article","Launch day"], event:["Event moment","Next partner event"]
+};
+const TIER_ASSETS = {1:["blog","social","sales","help","webinar","cs","event"], 2:["blog","social","sales","help","webinar"], 3:["help","social","sales"]};
+const TIER_NAME = {1:"Full launch", 2:"Standard launch", 3:"Light launch"};
+const TIMELINES = {
+  1:[[-56,"Kickoff and joint plan","Partner marketing, partner"],[-42,"Positioning approved","Product marketing, legal"],[-28,"Assets in production","Brand, comms"],[-14,"Partner sales trained","Partner sales"],[-7,"Press and posts scheduled","Comms, partner"],[0,"Launch","Everyone"],[14,"Webinar","Partner marketing"],[30,"First readout","Partner marketing, partnerships"]],
+  2:[[-35,"Kickoff and joint plan","Partner marketing, partner"],[-21,"Positioning approved","Product marketing, legal"],[-14,"Assets in production","Brand"],[-7,"Partner sales trained","Partner sales"],[0,"Launch","Everyone"],[14,"Webinar","Partner marketing"],[30,"First readout","Partner marketing"]],
+  3:[[-21,"Kickoff","Partner marketing, partner"],[-7,"Help article and post ready","Partner marketing, legal"],[0,"Launch","Partner marketing"],[30,"First readout","Partner marketing"]]
+};
+const EXAMPLE = {plat:"ChatGPT Ads", name:"Klaviyo", cust:"consumer brands", type:"crm", tier:"1", date:"2027-03-02"};
+let state = {...EXAMPLE};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const capFirst = s => s.charAt(0).toUpperCase() + s.slice(1);
+const raw = (t, s) => t.replace(/^\{C\}/, capFirst(s.cust)).replaceAll("{P}", s.name).replaceAll("{C}", s.cust).replaceAll("{X}", s.plat);
+const fill = (t, s) => esc(raw(t, s));
+function shift(iso, days){ const d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() + days); return d; }
+const fmt = d => d.toLocaleDateString("en-US",{month:"short", day:"numeric"});
+const rel = n => n === 0 ? "Launch day" : n < 0 ? (n % 7 === 0 ? `${-n/7} week${-n/7===1?"":"s"} before` : `${-n} days before`) : `${n} days after`;
+
+
+const SAMPLE = {
+  groups:[
+    {key:"oa", title:"Published by ChatGPT Ads", sub:"Copy for OpenAI's own channels: the blog, ChatGPT Ads social accounts, and events.", pill:"ChatGPT Ads channels",
+     items:[
+      {name:"Launch blog post", for:"OpenAI Ads blog", when:"Launch day",
+       hook:"Bringing ChatGPT Ads to Klaviyo",
+       angle:"Frame it as the missing half of the customer relationship. Retention already lives in Klaviyo; discovery now lives there too.",
+       drafts:[["Draft",`Today we're making it easier for consumer brands to add ChatGPT Ads to the work they already do in Klaviyo.
+
+Starting today in beta, Klaviyo customers can create, manage, and measure ChatGPT Ads campaigns directly in Klaviyo. Brands can build audiences from the customer data they already manage, set budgets, and see results next to their email and SMS programs.
+
+A new channel shouldn't mean a new workflow. Klaviyo is where many consumer brands already plan how they reach people, so it's a natural place to start.
+
+Our principles stay the same: ChatGPT's answers remain independent, conversations stay private, and advertisers receive aggregate reporting on how their ads perform.
+
+Klaviyo customers can get started from their dashboard today.`]]},
+      {name:"Social post", for:"LinkedIn · ChatGPT Ads account", when:"Launch day",
+       hook:"A new channel shouldn't mean a new workflow.",
+       angle:"The news is what doesn't change. Brands keep working where they already work.",
+       drafts:[["Draft",`ChatGPT Ads is now available in Klaviyo.
+
+Consumer brands can create, manage, and measure ChatGPT Ads campaigns from the same place they run email and SMS.
+
+A new channel shouldn't mean a new workflow.`]]},
+      {name:"Co-hosted webinar", for:"Webinar · promoted by both teams", when:"Two weeks after launch",
+       hook:"Your first ChatGPT Ads campaign, built in Klaviyo",
+       angle:"Show, don't tell. One live build from blank screen to launched campaign beats ten slides.",
+       drafts:[["Abstract",`In 30 minutes, we'll build a ChatGPT Ads campaign from start to finish in Klaviyo: choosing an audience, setting a budget, and reading results next to email and SMS.
+
+Bring your questions on measurement and privacy. Hosted by ChatGPT Ads partner marketing and Klaviyo product marketing.`]]},
+      {name:"Case study", for:"OpenAI customer stories page", when:"60 days after launch",
+       hook:"How [brand] found new customers without changing how its team works",
+       angle:"The story is how little changed for the team, and what showed up anyway. Lead with new customers, not clicks.",
+       drafts:[["Who to feature and how",`Feature: a mid-size consumer brand that already runs strong Klaviyo flows and sells something people research first, like skincare or home goods.
+
+Story: the team launched from Klaviyo in an afternoon, kept its weekly routine, and saw ChatGPT Ads bring in a share of first-time buyers its other channels weren't reaching.
+
+Lead metric: share of new customers from ChatGPT Ads. Supporting metric: time from connecting to first campaign.`]]}
+     ]},
+    {key:"pt", title:"Partner launch kit, sent to Klaviyo", sub:"What we hand Klaviyo's marketing and sales teams two weeks before launch. Suggested copy they adapt in their own voice and both sides approve.", pill:"For Klaviyo's team",
+     items:[
+      {name:"Approved messaging", for:"Internal · Klaviyo marketing and comms", when:"Kickoff",
+       hook:"The facts every Klaviyo asset should get right",
+       angle:"One source of truth, so every partner asset stays accurate on what the integration does and how privacy works.",
+       drafts:[["Approved claims",`What it does: Klaviyo customers can create, manage, and measure ChatGPT Ads campaigns directly in Klaviyo.
+
+Approved proof points:
+• Build audiences from the customer data already in Klaviyo
+• See ChatGPT Ads results next to email and SMS
+• Advertisers receive aggregate reporting; conversations stay private`],
+        ["About ChatGPT Ads boilerplate",`ChatGPT Ads helps businesses connect with people as they discover products and services in ChatGPT. Ads are clearly labeled, ChatGPT's answers stay independent, and conversations stay private. Advertisers receive aggregate reporting on how their ads perform.`]]},
+      {name:"Suggested social post", for:"LinkedIn · Klaviyo account", when:"Launch day, same morning",
+       hook:"Your customers don't only find you in their inbox.",
+       angle:"Klaviyo speaks to the marketer, so its post can be about the shopper: people research before they buy, and now the brand can be part of that moment.",
+       drafts:[["Suggested copy",`Your customers don't only find you in their inbox.
+
+With ChatGPT Ads in Klaviyo, you can show up while people are figuring out what to buy, and see the results right next to your flows.
+
+Live today for every Klaviyo customer.`]]},
+      {name:"Suggested customer email", for:"Email · Klaviyo customer list", when:"Launch day",
+       hook:"New in Klaviyo: ChatGPT Ads",
+       angle:"Make it feel like a feature, not a new product. One button, the segments they already built, results where they already look.",
+       drafts:[["Suggested copy",`Subject: New in Klaviyo: ChatGPT Ads
+Preview: Launch your first campaign from the dashboard you already use.
+
+Starting today, you can create and manage ChatGPT Ads campaigns right in Klaviyo.
+
+Use the segments you've already built, set a budget, and see results alongside your email and SMS performance. No new tools. No new logins.
+
+[Create your first campaign]`]]},
+      {name:"Sales kit", for:"Internal · Klaviyo account managers", when:"Two weeks before launch",
+       hook:"Your best segments can now find new customers.",
+       angle:"Sellers don't need a new pitch. They need one sentence, the right accounts to call first, and answers to the three questions every brand will ask.",
+       drafts:[["Pitch and who to call first",`The pitch: if a brand already runs flows in Klaviyo, ChatGPT Ads is one more channel in the same workflow.
+
+Call first: brands with strong customer data and products people research before buying, like beauty, home, and apparel.`],
+        ["Three questions brands will ask",`"Do advertisers see what people type into ChatGPT?"
+No. ChatGPT Ads reports results in aggregate, and conversations stay private.
+
+"How will I know it worked?"
+Results show next to email and SMS in Klaviyo, so you can compare channels in one place.
+
+"We don't have budget for a new channel."
+Start with a small test on your best sellers. The launch offer matches part of your first campaign's spend.`]]}
+     ]}
+  ],
+  plays:[
+    ["Offer","First-campaign spend match","Match part of the spend on each brand's first ChatGPT Ads campaign launched from Klaviyo, for the first 60 days."],
+    ["In product","A prompt where brands already look","After a brand reviews its email results in Klaviyo, show one line: \"Reach new shoppers with ChatGPT Ads.\""],
+    ["Hands-on","First-campaign office hours","Every two weeks for 60 days, a 30-minute session where brands launch their first campaign with both teams in the room."],
+    ["New features","Early access for Klaviyo accounts","When new ChatGPT Ads formats ship, Klaviyo-connected brands try them first. That gives both teams a reason to come back with news."]
+  ],
+  score:[
+    ["Adoption",[
+      ["Connected Klaviyo accounts","Accounts that link ChatGPT Ads","300","1,500","Partner marketing"],
+      ["Activation rate","Connected accounts with a live campaign within 30 days","40%","50%","Partner marketing"],
+      ["New to ChatGPT Ads","Share of connected accounts that had never advertised","60%","60%","Partner marketing"]]],
+    ["Revenue",[
+      ["Spend from Klaviyo accounts","Month-over-month growth","Baseline","+20%","Partnerships"],
+      ["Repeat campaigns","Accounts that launch a second campaign within 60 days","n/a","45%","Partner marketing"],
+      ["Partner-sourced pipeline","Larger brands referred to the ChatGPT Ads sales team","10","40","Partnerships, sales"]]],
+    ["Enablement",[
+      ["Klaviyo sellers trained","Share of account managers who completed the kit","80%","100%","Partner marketing"]]]
+  ],
+  rules:[
+    ["","Scale it","Activation and spend at or above target by day 90.","Move to a joint business plan and add co-marketing budget."],
+    ["fix","Fix it","Accounts are connecting, but activation is under 30%.","Fix onboarding first: more office hours, a simpler first campaign."],
+    ["down","Step down","Connections under half of target by day 90.","Move to standard launch support and put the time into the next partner."]
+  ]
+};
+
+const draftStore = [];
+function renderSample(){
+  const s = state, T = TYPES[s.type];
+  const launch = shift(s.date, 0).toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"});
+  draftStore.length = 0;
+  const card = a => `<article class="asset">
+      <div><div class="chan">${esc(a.for)}</div><div class="who3"><span>${a.when}</span></div>
+        <h3>${esc(a.hook)}</h3>
+        <div class="ang"><b>${esc(a.name)} · the angle</b>${esc(a.angle)}</div></div>
+      <div>${a.drafts.map(([lbl, txt]) => { draftStore.push(txt); return `<div class="draft"><div class="lbl2"><span>${esc(lbl)}</span><button class="mini" type="button" data-copy="${draftStore.length-1}">Copy</button></div>${esc(txt)}</div>`; }).join("")}</div>
+    </article>`;
+  const groups = SAMPLE.groups.map(g => `<section class="grp-block ${g.key}">
+      <div class="grp-head"><span class="pill ${g.key === "oa" ? "pl" : "pt"}">${g.pill}</span><h3>${g.title}</h3><p>${g.sub}</p></div>
+      ${g.items.map(card).join("")}</section>`).join("");
+  const plays = SAMPLE.plays.map(([k,h,p]) => `<div class="play"><div class="k">${k}</div><h3>${h}</h3><p>${esc(p)}</p></div>`).join("");
+  const rows = SAMPLE.score.map(([g, rs]) => `<tr class="grp"><td colspan="4">${g}</td></tr>` + rs.map(r => `<tr><td>${r[0]}<small>${r[1]}</small></td><td class="num">${r[2]}</td><td class="num">${r[3]}</td><td>${r[4]}</td></tr>`).join("")).join("");
+  const rules = SAMPLE.rules.map(([c,h,when,then]) => `<div class="rule ${c}"><h3>${h}</h3><p><b>If:</b> ${when}</p><p style="margin-top:6px"><b>Then:</b> ${then}</p></div>`).join("");
+  const tl = TIMELINES[s.tier].map(([d, w, o]) => `<div class="ms${d===0?" launch":d>0?" after":""}"><div class="d">${fmt(shift(s.date, d))}</div><div class="r">${rel(d)}</div><div class="w">${w}</div><div class="o">${o}</div></div>`).join("");
+
+  document.getElementById("view-brief").innerHTML = `
+    <section class="hero">
+      <div class="eyebrow">Partner launch brief</div>
+      <h1>ChatGPT Ads<span class="x">×</span>Klaviyo</h1>
+      <div class="meta"><span>CRM partner</span><span>Full launch</span><span>Launches ${launch}</span><span><span class="tag">Hypothetical partnership</span></span></div>
+    </section>
+
+    <section class="line">
+      <div class="eyebrow">The one line</div>
+      <blockquote>${fill(T.line, s)}</blockquote>
+      <div class="why">${T.why.map((w,i)=>`<div><b>0${i+1}</b>${fill(w, s)}</div>`).join("")}</div>
+    </section>
+    <div class="principles"><span>Answers stay independent</span><span>Conversations stay private</span><span>Advertisers see aggregate results</span></div>
+
+    <div class="sec"><h2>Launch assets, ready to send</h2></div>
+    ${groups}
+    <div style="height:48px"></div>
+
+    <div class="sec"><h2>After launch: getting brands to use it</h2></div>
+    <section class="plays">${plays}</section>
+
+    <div class="sec"><h2>Timeline</h2></div>
+    <section class="tl"><div class="track">${tl}</div></section>
+
+    <div class="sec"><h2>Scorecard</h2></div>
+    <div class="sc-wrap"><table class="sc"><thead><tr><th>Metric</th><th class="num">Day 30</th><th class="num">Day 90</th><th>Owner</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <section class="rules">${rules}</section>
+    <p class="footnote">Targets are illustrative and would be set with the partner during the kickoff.</p>
+    <p class="status" id="status" role="status"></p>`;
+
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => {
+    const st = document.getElementById("status");
+    try { navigator.clipboard.writeText(draftStore[+b.dataset.copy]).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); }, () => st.textContent = "Your browser blocked copying. Select the text and copy it instead."); }
+    catch(e){ st.textContent = "Your browser blocked copying. Select the text and copy it instead."; }
+  }));
+}
+
+function renderBrief(){
+  if (JSON.stringify(state) === JSON.stringify(EXAMPLE)) { renderSample(); return; }
+  const T = TYPES[state.type], s = state, isEx = JSON.stringify(s) === JSON.stringify(EXAMPLE);
+  const launch = shift(s.date, 0).toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"});
+  const hooks = TIER_ASSETS[s.tier].map(k => {
+    const h = T.hooks[k], a = ASSETS[k];
+    const plWho = k === "sales" ? `For ${esc(s.plat)} sellers` : k === "help" ? "Title" : `${esc(s.plat)} voice`;
+    const ptWho = k === "sales" ? `For ${esc(s.name)} sellers` : k === "help" ? "Opening line" : `${esc(s.name)} voice`;
+    return `<article class="hook"><div class="name"><h3>${a[0]}</h3><span>${a[1]}</span></div>
+      <div class="v pl"><small>${plWho}</small>${fill(h.oa, s)}</div>
+      <div class="v pt"><small>${ptWho}</small>${fill(h.pt, s)}</div>
+      <div class="angle"><b>How to run it</b> · ${fill(h.angle, s)}</div></article>`;
+  }).join("");
+  const tl = TIMELINES[s.tier].map(([d, w, o]) => `<div class="ms${d===0?" launch":d>0?" after":""}">
+      <div class="d">${fmt(shift(s.date, d))}</div><div class="r">${rel(d)}</div><div class="w">${w}</div><div class="o">${o}</div></div>`).join("");
+  const kpis = T.kpis.map((k,i) => `<div class="kpi"><div class="n">${i+1}</div><h3>${fill(k[0], s)}</h3><p>${fill(k[1], s)}</p><div class="c">Check · ${k[2]}</div></div>`).join("");
+  const principles = /chatgpt/i.test(s.plat) ? `<div class="principles"><span>Answers stay independent</span><span>Conversations stay private</span><span>Advertisers see aggregate results</span></div>` : `<div class="principles"><span>Results reported in aggregate</span><span>Customer data stays protected</span></div>`;
+
+  document.getElementById("view-brief").innerHTML = `
+    <section class="hero">
+      <div class="eyebrow">${isEx ? "Sample partner launch brief" : "Partner launch brief"}</div>
+      <h1>${esc(s.plat)}<span class="x">×</span>${esc(s.name)}</h1>
+      <div class="meta"><span>${T.label} partner</span><span>${TIER_NAME[s.tier]}</span><span>Launches ${launch}</span>${isEx ? `<span><span class="tag">Hypothetical partnership</span></span>` : ""}</div>
+      <div class="hero-actions"><a class="btn primary" href="#build">Plan your own launch</a><button class="btn" type="button" id="copy">Copy brief</button></div>
+    </section>
+    <section class="line">
+      <div class="eyebrow">The one line</div>
+      <blockquote>${fill(T.line, s)}</blockquote>
+      <div class="why">${T.why.map((w,i)=>`<div><b>0${i+1}</b>${fill(w, s)}</div>`).join("")}</div>
+    </section>
+    ${principles}
+    <div class="sec"><h2>Hooks</h2><div class="legend"><span><i style="background:var(--violet)"></i>${esc(s.plat)}</span><span><i style="background:#d9cdb8"></i>${esc(s.name)}</span></div></div>
+    <section class="hooks">${hooks}</section>
+    <div class="sec"><h2>Timeline</h2></div>
+    <section class="tl"><div class="track">${tl}</div></section>
+    <div class="sec"><h2>Scorecard</h2></div>
+    <section class="kpis">${kpis}</section>
+    <p class="status" id="status" role="status"></p>`;
+  document.getElementById("copy").addEventListener("click", copyText);
+}
+
+function copyText(){
+  const T = TYPES[state.type], s = state, f = t => raw(t, s);
+  let out = `${s.plat} × ${s.name}: ${TIER_NAME[s.tier]}, launches ${s.date}\n\nThe one line: ${f(T.line)}\n\n`;
+  out += TIER_ASSETS[s.tier].map(k => `${ASSETS[k][0]}\n  ${s.plat}: ${f(T.hooks[k].oa)}\n  ${s.name}: ${f(T.hooks[k].pt)}\n  Angle: ${f(T.hooks[k].angle)}`).join("\n\n");
+  out += "\n\nTimeline\n" + TIMELINES[s.tier].map(([d,w]) => `  ${fmt(shift(s.date,d))} (${rel(d)}): ${w}`).join("\n");
+  out += "\n\nScorecard\n" + T.kpis.map(k => `  ${f(k[0])}: ${f(k[1])}`).join("\n");
+  const st = document.getElementById("status");
+  const fail = () => st.textContent = "Your browser blocked copying. Select the text and copy it instead.";
+  try { navigator.clipboard.writeText(out).then(() => st.textContent = "Copied. Paste it into a doc or tracker.", fail); } catch(e){ fail(); }
+}
+
+document.getElementById("types").innerHTML = Object.entries(TYPES).map(([k,t]) =>
+  `<label><input type="radio" name="type" id="type-${k}" value="${k}"${k==="crm"?" checked":""}><b>${t.label}</b><span>${t.sub}</span></label>`).join("");
+const SHARED = location.pathname.includes("/share/");
+let built = SHARED;
+if (SHARED) {
+  document.getElementById("f-plat").value = "ChatGPT Ads";
+  document.title = "ChatGPT Ads × Klaviyo Launch Brief";
+} else {
+  document.getElementById("reset").hidden = true;
+  document.getElementById("tab-brief").hidden = true;
+}
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  state = {
+    plat: v("f-plat") || EXAMPLE.plat, name: v("f-name") || "Your partner", cust: v("f-cust") || "their customers",
+    type: document.querySelector('input[name="type"]:checked').value,
+    tier: document.querySelector('input[name="tier"]:checked').value,
+    date: v("f-date") || EXAMPLE.date
+  };
+  built = true; document.getElementById("tab-brief").hidden = false;
+  renderBrief(); location.hash = "brief";
+});
+document.getElementById("reset").addEventListener("click", () => {
+  const set = (id, val) => document.getElementById(id).value = val;
+  set("f-plat", EXAMPLE.plat); set("f-name", EXAMPLE.name); set("f-cust", EXAMPLE.cust); set("f-date", EXAMPLE.date);
+  document.getElementById("type-crm").checked = true; document.getElementById("tier-1").checked = true;
+});
+
+function route(){
+  const h = location.hash;
+  const v = h === "#build" ? "build" : (h === "#brief" && built) ? "brief" : SHARED ? "brief" : "build";
+  document.getElementById("view-brief").hidden = v !== "brief";
+  document.getElementById("view-build").hidden = v !== "build";
+  ["brief","build"].forEach(n => { const t = document.getElementById("tab-" + n); n === v ? t.setAttribute("aria-current","page") : t.removeAttribute("aria-current"); });
+}
+window.addEventListener("hashchange", () => { route(); window.scrollTo(0,0); });
+renderBrief(); route();
+</script>
+</body>
+</html>
