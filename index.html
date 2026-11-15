@@ -195,6 +195,12 @@ table.sc{width:100%; border-collapse:collapse; font-size:14px; min-width:640px}
 .grp-block.pt .chan{color:#8a5a1c; background:#f6ead8}
 .grp-block.oa h3{color:var(--ink)}
 .grp-block.pt .asset h3{color:#5a4320}
+
+.bar-load{height:4px; border-radius:4px; background:var(--violet-soft); overflow:hidden; margin-top:6px}
+.bar-load i{display:block; height:100%; width:35%; background:var(--violet); border-radius:4px; animation:slide 1.6s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+@media (prefers-reduced-motion: reduce){ .bar-load i{animation:none; width:100%; opacity:.4} }
+.load-note{color:var(--muted); font-size:13.5px; margin:12px 0 0}
 </style>
 </head>
 <body>
@@ -444,43 +450,53 @@ Start with a small test on your best sellers. The launch offer matches part of y
 };
 
 const draftStore = [];
-function renderSample(){
-  const s = state, T = TYPES[s.type];
+let aiBrief = null;
+function renderFull(D, s, isSample){
+  const T = TYPES[s.type];
   const launch = shift(s.date, 0).toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"});
   draftStore.length = 0;
+  const isChat = /chatgpt/i.test(s.plat);
+  const line = D.line ? esc(D.line) : fill(T.line, s);
+  const why = (D.why && D.why.length ? D.why.map(esc) : T.why.map(w => fill(w, s)));
   const card = a => `<article class="asset">
-      <div><div class="chan">${esc(a.for)}</div><div class="who3"><span>${a.when}</span></div>
+      <div><div class="chan">${esc(a.for)}</div><div class="who3"><span>${esc(a.when)}</span></div>
         <h3>${esc(a.hook)}</h3>
         <div class="ang"><b>${esc(a.name)} · the angle</b>${esc(a.angle)}</div></div>
-      <div>${a.drafts.map(([lbl, txt]) => { draftStore.push(txt); return `<div class="draft"><div class="lbl2"><span>${esc(lbl)}</span><button class="mini" type="button" data-copy="${draftStore.length-1}">Copy</button></div>${esc(txt)}</div>`; }).join("")}</div>
+      <div>${(a.drafts || []).map(([lbl, txt]) => { draftStore.push(txt); return `<div class="draft"><div class="lbl2"><span>${esc(lbl)}</span><button class="mini" type="button" data-copy="${draftStore.length-1}">Copy</button></div>${esc(txt)}</div>`; }).join("")}</div>
     </article>`;
-  const groups = SAMPLE.groups.map(g => `<section class="grp-block ${g.key}">
-      <div class="grp-head"><span class="pill ${g.key === "oa" ? "pl" : "pt"}">${g.pill}</span><h3>${g.title}</h3><p>${g.sub}</p></div>
-      ${g.items.map(card).join("")}</section>`).join("");
-  const plays = SAMPLE.plays.map(([k,h,p]) => `<div class="play"><div class="k">${k}</div><h3>${h}</h3><p>${esc(p)}</p></div>`).join("");
-  const rows = SAMPLE.score.map(([g, rs]) => `<tr class="grp"><td colspan="4">${g}</td></tr>` + rs.map(r => `<tr><td>${r[0]}<small>${r[1]}</small></td><td class="num">${r[2]}</td><td class="num">${r[3]}</td><td>${r[4]}</td></tr>`).join("")).join("");
-  const rules = SAMPLE.rules.map(([c,h,when,then]) => `<div class="rule ${c}"><h3>${h}</h3><p><b>If:</b> ${when}</p><p style="margin-top:6px"><b>Then:</b> ${then}</p></div>`).join("");
+  const gmeta = {
+    oa: {pill: `${esc(s.plat)} channels`, title: `Published by ${esc(s.plat)}`, sub: `Copy for the platform's own channels: the blog, social accounts, and events.`},
+    pt: {pill: `For ${esc(s.name)}'s team`, title: `Partner launch kit, sent to ${esc(s.name)}`, sub: `What we hand ${esc(s.name)}'s marketing and sales teams before launch. Suggested copy they adapt in their own voice and both sides approve.`}
+  };
+  const groups = D.groups.map(g => { const d = gmeta[g.key] || gmeta.oa; const m = {pill: g.pill || d.pill, title: g.title || d.title, sub: g.sub || d.sub}; return `<section class="grp-block ${g.key === "pt" ? "pt" : "oa"}">
+      <div class="grp-head"><span class="pill ${g.key === "pt" ? "pt" : "pl"}">${m.pill}</span><h3>${m.title}</h3><p>${m.sub}</p></div>
+      ${g.items.map(card).join("")}</section>`; }).join("");
+  const plays = D.plays.map(([k,h,p]) => `<div class="play"><div class="k">${esc(k)}</div><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join("");
+  const rows = D.score.map(([g, rs]) => `<tr class="grp"><td colspan="4">${esc(g)}</td></tr>` + rs.map(r => `<tr><td>${esc(r[0])}<small>${esc(r[1])}</small></td><td class="num">${esc(r[2])}</td><td class="num">${esc(r[3])}</td><td>${esc(r[4])}</td></tr>`).join("")).join("");
+  const rules = D.rules.map(([c,h,when,then]) => `<div class="rule ${esc(c)}"><h3>${esc(h)}</h3><p><b>If:</b> ${esc(when)}</p><p style="margin-top:6px"><b>Then:</b> ${esc(then)}</p></div>`).join("");
   const tl = TIMELINES[s.tier].map(([d, w, o]) => `<div class="ms${d===0?" launch":d>0?" after":""}"><div class="d">${fmt(shift(s.date, d))}</div><div class="r">${rel(d)}</div><div class="w">${w}</div><div class="o">${o}</div></div>`).join("");
+  const principles = isChat ? `<div class="principles"><span>Answers stay independent</span><span>Conversations stay private</span><span>Advertisers see aggregate results</span></div>` : `<div class="principles"><span>Results reported in aggregate</span><span>Customer data stays protected</span></div>`;
 
   document.getElementById("view-brief").innerHTML = `
     <section class="hero">
       <div class="eyebrow">Partner launch brief</div>
-      <h1>ChatGPT Ads<span class="x">×</span>Klaviyo</h1>
-      <div class="meta"><span>CRM partner</span><span>Full launch</span><span>Launches ${launch}</span><span><span class="tag">Hypothetical partnership</span></span></div>
+      <h1>${esc(s.plat)}<span class="x">×</span>${esc(s.name)}</h1>
+      <div class="meta"><span>${T.label} partner</span><span>${TIER_NAME[s.tier]}</span><span>Launches ${launch}</span>${isSample ? `<span><span class="tag">Hypothetical partnership</span></span>` : ""}</div>
+      ${isSample ? "" : `<div class="hero-actions"><a class="btn primary" href="#build">Plan another launch</a></div>`}
     </section>
 
     <section class="line">
       <div class="eyebrow">The one line</div>
-      <blockquote>${fill(T.line, s)}</blockquote>
-      <div class="why">${T.why.map((w,i)=>`<div><b>0${i+1}</b>${fill(w, s)}</div>`).join("")}</div>
+      <blockquote>${line}</blockquote>
+      <div class="why">${why.map((w,i)=>`<div><b>0${i+1}</b>${w}</div>`).join("")}</div>
     </section>
-    <div class="principles"><span>Answers stay independent</span><span>Conversations stay private</span><span>Advertisers see aggregate results</span></div>
+    ${principles}
 
     <div class="sec"><h2>Launch assets, ready to send</h2></div>
     ${groups}
     <div style="height:48px"></div>
 
-    <div class="sec"><h2>After launch: getting brands to use it</h2></div>
+    <div class="sec"><h2>After launch: getting customers to use it</h2></div>
     <section class="plays">${plays}</section>
 
     <div class="sec"><h2>Timeline</h2></div>
@@ -498,9 +514,23 @@ function renderSample(){
     catch(e){ st.textContent = "Your browser blocked copying. Select the text and copy it instead."; }
   }));
 }
+function renderSample(){ renderFull(SAMPLE, state, true); }
+
+function renderLoading(s){
+  document.getElementById("view-brief").innerHTML = `
+    <section class="hero">
+      <div class="eyebrow">Partner launch brief</div>
+      <h1>${esc(s.plat)}<span class="x">×</span>${esc(s.name)}</h1>
+      <div class="meta"><span>${TYPES[s.type].label} partner</span><span>${TIER_NAME[s.tier]}</span></div>
+    </section>
+    <section class="line loading"><div class="eyebrow">Writing your brief</div>
+      <blockquote>Drafting positioning, launch copy for both teams, adoption plays, and a scorecard.</blockquote>
+      <div class="bar-load"><i></i></div><p class="load-note">This usually takes 20 to 40 seconds.</p></section>`;
+}
 
 function renderBrief(){
   if (JSON.stringify(state) === JSON.stringify(EXAMPLE)) { renderSample(); return; }
+  if (aiBrief) { renderFull(aiBrief, state, false); return; }
   const T = TYPES[state.type], s = state, isEx = JSON.stringify(s) === JSON.stringify(EXAMPLE);
   const launch = shift(s.date, 0).toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"});
   const hooks = TIER_ASSETS[s.tier].map(k => {
@@ -562,7 +592,7 @@ if (SHARED) {
   document.getElementById("reset").hidden = true;
   document.getElementById("tab-brief").hidden = true;
 }
-document.getElementById("form").addEventListener("submit", e => {
+document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
   state = {
@@ -572,7 +602,20 @@ document.getElementById("form").addEventListener("submit", e => {
     date: v("f-date") || EXAMPLE.date
   };
   built = true; document.getElementById("tab-brief").hidden = false;
-  renderBrief(); location.hash = "brief";
+  aiBrief = null;
+  const btn = document.querySelector('#form button[type="submit"]'); btn.disabled = true;
+  renderLoading(state); location.hash = "brief"; window.scrollTo(0,0);
+  const mine = JSON.stringify(state);
+  try {
+    const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 75000);
+    const r = await fetch("/api/brief", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({...state, typeLabel: TYPES[state.type].label, tierName: TIER_NAME[state.tier]}), signal: ctl.signal});
+    clearTimeout(timer);
+    const j = r.ok ? await r.json() : null;
+    if (mine !== JSON.stringify(state)) return;
+    if (j && j.groups && j.plays && j.score && j.rules) { aiBrief = j; }
+  } catch(err) {}
+  btn.disabled = false;
+  renderBrief();
 });
 document.getElementById("reset").addEventListener("click", () => {
   const set = (id, val) => document.getElementById(id).value = val;
