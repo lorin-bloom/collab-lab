@@ -48,7 +48,7 @@ Voice rules:
 - Partner-voice copy is suggested copy the partner adapts. It can be warmer and more direct, speaking to the partner's own customers.
 - Lead with what the integration lets customers do inside the tool they already use. Never invent statistics, customer names, prices or results. Use placeholders like [brand] where needed.
 - Measurement and data are always described as aggregate reporting. Never imply ads are targeted using private conversations or personal data.${isChat ? "\n- For ChatGPT Ads, include the principles where natural: ChatGPT's answers stay independent, conversations stay private, advertisers receive aggregate reporting." : ""}
-- The partnership is hypothetical; write as a plan, never claim it has been announced.
+- Write every draft as it would read on launch day (for example "Starting today..."), because these are drafts prepared ahead of launch. Do not hedge with "planning" or "will". The page labels the brief as a draft.
 - Each "angle" is the creative idea behind the asset (the insight or framing), not an operational tip.
 
 Always respond by calling the write_brief tool exactly once with the full brief. Use this shape:
