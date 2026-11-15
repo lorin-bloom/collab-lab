@@ -1,7 +1,7 @@
 // Vercel serverless function: writes a partner launch brief with Claude.
 // Needs the ANTHROPIC_API_KEY environment variable. Optional: ANTHROPIC_MODEL, DAILY_LIMIT.
 
-const MODEL = process.env.ANTHROPIC_MODEL || "claude-sonnet-5-5";
+const MODEL = process.env.ANTHROPIC_MODEL || "claude-haiku-5-5";
 const DAILY_LIMIT = Number(process.env.DAILY_LIMIT || 60);
 let day = "", count = 0;
 const perIp = new Map();
