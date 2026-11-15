@@ -63,7 +63,7 @@ Always respond by calling the write_brief tool exactly once with the full brief.
  "score": [["Adoption", [["metric", "definition", "day 30 target", "day 90 target", "owner team"]]], ["Revenue", [...]], ["Enablement", [...]]],
  "rules": [["", "Scale it", "if condition", "then action"], ["fix", "Fix it", "if", "then"], ["down", "Step down", "if", "then"]]
 }
-Use "\\n" for line breaks inside drafts. Keep each draft under 90 words. Exactly 4 plays. 2 to 3 metrics per score group; targets can be counts or percentages and are illustrative.`;
+Use "\\n" for line breaks inside drafts. Keep each draft under 70 words and each angle to one sentence. Exactly 4 plays. 2 to 3 metrics per score group; targets can be counts or percentages and are illustrative.`;
 
   const user = `Platform: ${plat}
 Partner: ${name}
@@ -103,7 +103,7 @@ The sales kit should include the pitch, who to call first, and answers to the th
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
-      body: JSON.stringify({ model: MODEL, max_tokens: 6000, system, tools: [tool], tool_choice: { type: "auto" }, messages: [{ role: "user", content: user }] })
+      body: JSON.stringify({ model: MODEL, max_tokens: 10000, system, tools: [tool], tool_choice: { type: "auto" }, messages: [{ role: "user", content: user }] })
     });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) { res.status(502).json({ error: "Model request failed.", detail: (j.error && j.error.message) || r.status }); return; }
