@@ -51,7 +51,7 @@ Voice rules:
 - The partnership is hypothetical; write as a plan, never claim it has been announced.
 - Each "angle" is the creative idea behind the asset (the insight or framing), not an operational tip.
 
-Return only valid JSON, no markdown, matching exactly:
+Call the write_brief tool with the brief, using this shape:
 {
  "line": "one-sentence positioning, under 25 words",
  "why": ["benefit 1", "benefit 2", "benefit 3"],
@@ -63,7 +63,7 @@ Return only valid JSON, no markdown, matching exactly:
  "score": [["Adoption", [["metric", "definition", "day 30 target", "day 90 target", "owner team"]]], ["Revenue", [...]], ["Enablement", [...]]],
  "rules": [["", "Scale it", "if condition", "then action"], ["fix", "Fix it", "if", "then"], ["down", "Step down", "if", "then"]]
 }
-Use "\\n" for line breaks inside drafts. Keep each draft under 110 words. Exactly 4 plays. 2 to 3 metrics per score group; targets can be counts or percentages and are illustrative.`;
+Use "\\n" for line breaks inside drafts. Keep each draft under 90 words. Exactly 4 plays. 2 to 3 metrics per score group; targets can be counts or percentages and are illustrative.`;
 
   const user = `Platform: ${plat}
 Partner: ${name}
@@ -75,22 +75,45 @@ Assets published by ${plat} (group "oa"), in this order: ${assets.oa.join("; ")}
 Partner launch kit sent to ${name} (group "pt"), in this order: ${assets.pt.join("; ")}.
 The sales kit should include the pitch, who to call first, and answers to the three questions customers will ask.`;
 
+  const tool = {
+    name: "write_brief",
+    description: "Return the finished partner launch brief.",
+    input_schema: {
+      type: "object",
+      properties: {
+        line: { type: "string" },
+        why: { type: "array", items: { type: "string" } },
+        groups: { type: "array", items: { type: "object", properties: {
+          key: { type: "string", enum: ["oa", "pt"] },
+          items: { type: "array", items: { type: "object", properties: {
+            name: { type: "string" }, for: { type: "string" }, when: { type: "string" },
+            hook: { type: "string" }, angle: { type: "string" },
+            drafts: { type: "array", items: { type: "array", items: { type: "string" } } }
+          }, required: ["name", "for", "when", "hook", "angle", "drafts"] } }
+        }, required: ["key", "items"] } },
+        plays: { type: "array", items: { type: "array", items: { type: "string" } } },
+        score: { type: "array", items: { type: "array" } },
+        rules: { type: "array", items: { type: "array", items: { type: "string" } } }
+      },
+      required: ["line", "why", "groups", "plays", "score", "rules"]
+    }
+  };
+
   try {
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
-      body: JSON.stringify({ model: MODEL, max_tokens: 4000, system, messages: [{ role: "user", content: user }] })
+      body: JSON.stringify({ model: MODEL, max_tokens: 6000, system, tools: [tool], tool_choice: { type: "tool", name: "write_brief" }, messages: [{ role: "user", content: user }] })
     });
-    if (!r.ok) { res.status(502).json({ error: "Model request failed." }); return; }
-    const j = await r.json();
-    const text = (j.content || []).map(c => c.text || "").join("");
-    const start = text.indexOf("{"), end = text.lastIndexOf("}");
-    const data = JSON.parse(text.slice(start, end + 1));
-    if (!data.groups || !data.plays || !data.score || !data.rules) throw new Error("bad shape");
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { res.status(502).json({ error: "Model request failed.", detail: (j.error && j.error.message) || r.status }); return; }
+    const block = (j.content || []).find(c => c.type === "tool_use");
+    const data = block && block.input;
+    if (!data || !data.groups || !data.plays || !data.score || !data.rules) { res.status(502).json({ error: "Could not write the brief.", detail: j.stop_reason || "no tool output" }); return; }
     res.setHeader("Cache-Control", "no-store");
     res.status(200).json(data);
   } catch (e) {
-    res.status(502).json({ error: "Could not write the brief." });
+    res.status(502).json({ error: "Could not write the brief.", detail: String(e && e.message || e).slice(0, 200) });
   }
 };
 
