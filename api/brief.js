@@ -51,7 +51,7 @@ Voice rules:
 - The partnership is hypothetical; write as a plan, never claim it has been announced.
 - Each "angle" is the creative idea behind the asset (the insight or framing), not an operational tip.
 
-Call the write_brief tool with the brief, using this shape:
+Always respond by calling the write_brief tool exactly once with the full brief. Use this shape:
 {
  "line": "one-sentence positioning, under 25 words",
  "why": ["benefit 1", "benefit 2", "benefit 3"],
@@ -103,12 +103,13 @@ The sales kit should include the pitch, who to call first, and answers to the th
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
-      body: JSON.stringify({ model: MODEL, max_tokens: 6000, system, tools: [tool], tool_choice: { type: "tool", name: "write_brief" }, messages: [{ role: "user", content: user }] })
+      body: JSON.stringify({ model: MODEL, max_tokens: 6000, system, tools: [tool], tool_choice: { type: "auto" }, messages: [{ role: "user", content: user }] })
     });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) { res.status(502).json({ error: "Model request failed.", detail: (j.error && j.error.message) || r.status }); return; }
     const block = (j.content || []).find(c => c.type === "tool_use");
-    const data = block && block.input;
+    let data = block && block.input;
+    if (!data) { try { const txt = (j.content || []).filter(c => c.type === "text").map(c => c.text).join(""); data = JSON.parse(txt.slice(txt.indexOf("{"), txt.lastIndexOf("}") + 1)); } catch (e) {} }
     if (!data || !data.groups || !data.plays || !data.score || !data.rules) { res.status(502).json({ error: "Could not write the brief.", detail: j.stop_reason || "no tool output" }); return; }
     res.setHeader("Cache-Control", "no-store");
     res.status(200).json(data);
