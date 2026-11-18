@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daybreak × Deloitte Launch Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f1f2f4; --card:#ffffff; --ink:#151a2d; --muted:#6b7488; --hair:#e2e4e8;
+  --violet:#5546f0; --violet-soft:#efedff; --sand:#f3efe7; --sand-ink:#7a6a52;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --shadow:0 1px 2px rgba(21,26,45,.04), 0 6px 24px rgba(21,26,45,.05);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper); color:var(--ink); font:15px/1.6 var(--sans); -webkit-font-smoothing:antialiased}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px 80px}
+h1,h2,h3{font-family:var(--serif); font-weight:400; margin:0; text-wrap:balance; letter-spacing:-0.01em}
+.dot{color:var(--violet)}
+.eyebrow{font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+
+.top{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding:36px 0 44px}
+.word{font-family:var(--serif); font-size:30px; line-height:1; text-decoration:none; color:var(--ink); letter-spacing:-0.02em}
+.tabs{display:flex; gap:22px}
+.tabs a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:500; padding:4px 0; border-bottom:1.5px solid transparent}
+.tabs a[aria-current="page"]{color:var(--ink); border-bottom-color:var(--violet)}
+a:focus-visible, button:focus-visible, input:focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:6px}
+
+.hero{margin-bottom:40px}
+.hero h1{font-size:clamp(38px,6.4vw,64px); line-height:1.02; margin:14px 0 18px}
+.hero h1 .x{color:var(--violet); padding:0 .12em; font-style:italic}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; color:var(--muted); font-size:14px}
+.meta span{display:flex; align-items:center; gap:8px}
+.meta span + span::before{content:""; width:3px; height:3px; border-radius:50%; background:var(--muted); margin-left:-12px}
+.tag{display:inline-block; font-size:12px; font-weight:500; color:var(--violet); background:var(--violet-soft); border-radius:999px; padding:3px 10px}
+.focus{margin:16px 0 0; font-size:16px; color:var(--ink); max-width:640px}
+.focus b{font-weight:500}
+.hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:26px}
+.btn{font:500 14px var(--sans); border-radius:999px; padding:11px 20px; cursor:pointer; border:1px solid var(--hair); background:var(--card); color:var(--ink); text-decoration:none; display:inline-block; box-shadow:var(--shadow)}
+.btn.primary{background:var(--ink); border-color:var(--ink); color:#fff}
+.btn:hover{border-color:var(--ink)}
+.btn.primary:hover{background:var(--violet); border-color:var(--violet)}
+
+.line{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:40px 40px 34px; margin-bottom:14px}
+.line blockquote{margin:12px 0 28px; font-family:var(--serif); font-size:clamp(25px,3.4vw,34px); line-height:1.22; letter-spacing:-0.015em}
+.why{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; border-top:1px solid var(--hair); padding-top:22px}
+.why div{font-size:14px; color:var(--muted)}
+.why b{display:block; font-family:var(--serif); font-weight:400; font-size:22px; color:var(--violet); line-height:1; margin-bottom:8px}
+.principles{display:flex; flex-wrap:wrap; gap:6px 22px; padding:14px 6px 0; margin-bottom:56px; font-size:13px; color:var(--muted)}
+.principles span::before{content:"✓"; color:var(--violet); margin-right:7px}
+
+.sec{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 18px}
+.sec h2{font-size:32px}
+.sec p{margin:0; color:var(--muted); font-size:14px; flex-basis:100%}
+.legend{display:flex; gap:16px; font-size:13px; color:var(--muted)}
+.legend i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:7px}
+
+.hooks{display:grid; gap:12px; margin-bottom:60px}
+.hook{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:22px 26px; display:grid; grid-template-columns:170px 1fr 1fr; gap:18px 22px; align-items:start}
+.hook .name h3{font-size:21px; line-height:1.15}
+.hook .name span{display:block; margin-top:6px; font-size:12.5px; color:var(--muted)}
+.v{font-size:14.5px; line-height:1.5}
+.v small{display:block; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; margin-bottom:6px}
+.v.pl small{color:var(--violet)}
+.v.pt small{color:var(--sand-ink)}
+.v.pl{border-left:2px solid var(--violet); padding-left:14px}
+.v.pt{border-left:2px solid #d9cdb8; padding-left:14px}
+.angle{grid-column:2 / -1; background:var(--sand); border-radius:12px; padding:10px 14px; font-size:13.5px; color:#4f4a40}
+.angle b{font-weight:600; color:var(--ink)}
+
+.tl{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:30px 28px 26px; margin-bottom:60px; overflow-x:auto}
+.track{position:relative; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(96px,1fr); gap:12px; min-width:min-content}
+.track::before{content:""; position:absolute; left:4px; right:4px; top:5px; height:1px; background:var(--hair)}
+.ms{position:relative; padding-top:24px}
+.ms::before{content:""; position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%; background:var(--card); border:1.5px solid var(--ink)}
+.ms.launch::before{background:var(--violet); border-color:var(--violet); width:15px; height:15px; top:-2px; box-shadow:0 0 0 5px var(--violet-soft)}
+.ms.after::before{border-color:var(--violet)}
+.ms .d{font-family:var(--serif); font-size:19px; line-height:1.1}
+.ms .r{font-size:12px; color:var(--muted); margin:2px 0 8px; font-variant-numeric:tabular-nums}
+.ms .w{font-size:13.5px; font-weight:500; line-height:1.35; margin-bottom:6px}
+.ms .o{font-size:12px; color:var(--muted); line-height:1.4}
+
+.kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:40px}
+.kpi{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px; display:grid; grid-template-columns:auto 1fr; gap:4px 16px}
+.kpi .n{font-family:var(--serif); font-size:34px; line-height:1; color:var(--violet); grid-row:span 3}
+.kpi h3{font-size:20px; line-height:1.2}
+.kpi p{margin:0; color:var(--muted); font-size:13.5px}
+.kpi .c{font-size:12px; font-weight:500; color:var(--ink); margin-top:6px}
+.status{font-size:13px; color:var(--violet); min-height:1em; text-align:center}
+
+.form{display:grid; gap:30px; max-width:720px}
+.form h1{font-size:clamp(36px,5.5vw,54px); line-height:1.05}
+.form p.sub{margin:-16px 0 0; font-size:19px; color:var(--muted)}
+.field{display:grid; gap:12px}
+.field > label, .field .lab{font-family:var(--serif); font-size:24px; line-height:1.2}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+input[type=text], input[type=date]{font:16px var(--sans); padding:16px 18px; border-radius:16px; border:1px solid var(--hair); background:var(--card); color:var(--ink); width:100%; box-shadow:var(--shadow)}
+input::placeholder{color:#97a0b3}
+.opts{display:grid; gap:10px}
+.opts.five{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.opts.three{grid-template-columns:repeat(3,1fr)}
+.opts label{background:var(--card); border:1px solid var(--hair); border-radius:16px; padding:14px 16px; cursor:pointer; box-shadow:var(--shadow); display:grid; gap:2px; position:relative}
+.opts input{position:absolute; opacity:0; pointer-events:none}
+.opts label:has(input:checked){border-color:var(--violet); box-shadow:0 0 0 3px var(--violet-soft)}
+.opts label:has(input:focus-visible){outline:2px solid var(--violet); outline-offset:3px}
+.opts b{font-weight:500; font-size:15px}
+.opts span{font-size:12.5px; color:var(--muted)}
+.form .hero-actions{margin-top:0}
+
+@media (max-width:760px){
+  .hook{grid-template-columns:1fr; padding:20px}
+  .angle{grid-column:auto}
+  .why, .kpis, .row, .opts.three{grid-template-columns:1fr}
+  .line{padding:28px 24px}
+}
+@media (prefers-reduced-motion: no-preference){ .view{animation:in .3s ease both} @keyframes in{from{opacity:.5; transform:translateY(4px)} to{opacity:1; transform:none}} }
+[hidden]{display:none !important}
+
+.asset{background:var(--card); border-radius:20px; box-shadow:var(--shadow); padding:26px 28px; display:grid; grid-template-columns:1fr 1.25fr; gap:26px; margin-bottom:12px}
+.asset .who3{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:12.5px; color:var(--muted)}
+.pill{font-size:11.5px; font-weight:600; letter-spacing:.04em; border-radius:999px; padding:2px 9px}
+.pill.pl{background:var(--violet-soft); color:var(--violet)}
+.pill.pt{background:var(--sand); color:var(--sand-ink)}
+.asset h3{font-size:25px; line-height:1.15; margin:10px 0 12px}
+.asset .ang{font-size:14px; color:var(--ink)}
+.asset .ang b{display:block; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:4px}
+.draft{background:var(--paper); border:1px solid var(--hair); border-radius:14px; padding:18px 20px; font-size:14px; line-height:1.6; white-space:pre-line; position:relative}
+.draft .lbl2{display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; white-space:normal}
+.mini{font:500 12px var(--sans); border:1px solid var(--hair); background:var(--card); border-radius:999px; padding:4px 11px; cursor:pointer; color:var(--ink); text-transform:none; letter-spacing:0}
+.mini:hover{border-color:var(--violet); color:var(--violet)}
+.draft + .draft{margin-top:10px}
+
+.plays{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:60px}
+.play{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px}
+.play .k{font-size:12px; font-weight:500; color:var(--violet)}
+.play h3{font-size:21px; margin:6px 0 8px; line-height:1.2}
+.play p{margin:0; font-size:14px; color:var(--muted)}
+
+.sc-wrap{background:var(--card); border-radius:22px; box-shadow:var(--shadow); padding:10px 8px 8px; margin-bottom:12px; overflow-x:auto}
+table.sc{width:100%; border-collapse:collapse; font-size:14px; min-width:640px}
+.sc th{font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); text-align:left; padding:14px 18px 10px}
+.sc td{padding:14px 18px; border-top:1px solid var(--hair); vertical-align:top}
+.sc td.num, .sc th.num{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sc td.num{font-family:var(--serif); font-size:18px}
+.sc td small{display:block; color:var(--muted); font-size:12.5px; margin-top:2px}
+.sc .grp td{background:var(--paper); font-size:11px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--violet); padding:8px 18px}
+.rules{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:12px}
+.rule{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:18px 20px; border-top:3px solid var(--violet)}
+.rule.fix{border-top-color:#c99a3b} .rule.down{border-top-color:#a3a9b6}
+.rule h3{font-size:20px; margin-bottom:6px}
+.rule p{margin:0; font-size:13.5px; color:var(--muted)}
+.rule p b{color:var(--ink); font-weight:500}
+.footnote{font-size:12.5px; color:var(--muted); margin:0 0 40px 6px}
+@media (max-width:760px){
+  .asset, .plays, .rules{grid-template-columns:1fr}
+}
+
+.grp-block{margin-bottom:36px}
+.grp-head{padding:6px 6px 16px}
+.grp-head h3{font-size:26px; margin:10px 0 4px}
+.grp-head p{margin:0; color:var(--muted); font-size:14.5px; max-width:640px}
+.grp-block.oa .asset{border-left:3px solid var(--violet)}
+.grp-block.pt .asset{border-left:3px solid #d9cdb8}
+.chan{display:inline-block; font-size:13px; font-weight:600; letter-spacing:.01em; border-radius:8px; padding:5px 10px; margin-bottom:8px}
+.grp-block.oa .chan{color:var(--violet); background:var(--violet-soft)}
+.grp-block.pt .chan{color:#8a5a1c; background:#f6ead8}
+.grp-block.pt .asset h3{color:#5a4320}
+
+/* Collab Lab identity: modern sans, teal accent, crisp corners. */
+:root{
+  --violet:#0f8f86; --violet-soft:#e3f4f2;
+  --serif:"Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --sans:"Geist", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono:"Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ink:#0f1419; --muted:#5f6b7a;
+}
+body{font-size:15px; letter-spacing:-0.005em}
+h1,h2,h3{font-weight:600; letter-spacing:-0.035em}
+.word{display:inline-flex; align-items:center; gap:.32em; font-weight:700; font-size:clamp(30px,4vw,40px); letter-spacing:-0.045em}
+.word .dot{display:none}
+.word::before{content:""; flex:none; width:.92em; height:.6em; background:
+  radial-gradient(circle at 30% 50%, var(--violet) .28em, transparent .285em),
+  radial-gradient(circle at 70% 50%, var(--ink) .28em, transparent .285em)}
+.hero h1, .form h1{font-size:clamp(28px,3.6vw,36px); line-height:1.12; letter-spacing:-0.035em}
+.word{font-size:clamp(32px,4.4vw,44px)}
+.form p.sub{font-size:16px}
+.sec h2{font-size:24px}
+.grp-head h3{font-size:20px}
+.asset h3{font-size:19px; letter-spacing:-0.025em}
+.hook .name h3, .play h3{font-size:17px; letter-spacing:-0.02em}
+.kpi h3, .rule h3{font-size:16px; letter-spacing:-0.02em}
+.hero h1 .x{font-style:normal; font-weight:500; padding:0 .2em}
+.eyebrow, .v small, .asset .ang b, .draft .lbl2, .sc th, .sc .grp td, .pill, .play .k, .why b{font-family:var(--mono); letter-spacing:.02em}
+.eyebrow{font-size:11.5px}
+.line blockquote{font-weight:500; font-size:clamp(19px,2.2vw,22px); line-height:1.35; letter-spacing:-0.02em}
+.why b{font-size:15px; font-weight:500}
+.field > label, .field .lab{font-size:16px; font-weight:600; letter-spacing:-0.015em}
+.ms .d, .sc td.num{font-weight:600; font-size:16px; letter-spacing:-0.02em; font-variant-numeric:tabular-nums}
+.kpi .n{font-weight:600; letter-spacing:-0.04em; font-variant-numeric:tabular-nums}
+.line, .tl, .sc-wrap{border-radius:14px}
+.hook, .kpi, .asset, .play, .rule{border-radius:12px}
+input[type=text], input[type=date], .opts label{border-radius:10px}
+.draft{border-radius:10px}
+.angle{border-radius:8px}
+.btn{border-radius:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="word" href="#brief">Collab Lab<span class="dot">.</span></a>
+    <nav class="tabs" aria-label="Views">
+      <a href="#brief" id="tab-brief">Brief</a>
+      <a href="#build" id="tab-build">New brief</a>
+    </nav>
+  </header>
+
+  <main id="view-brief" class="view"></main>
+
+  <main id="view-build" class="view" hidden>
+    <form class="form" id="form" novalidate>
+      <div>
+        <h1>Plan a cyber partner launch<span class="dot">.</span></h1>
+      </div>
+      <p class="sub">Positioning, hooks in both voices, a dated timeline, and a scorecard, in minutes.</p>
+      <div class="row">
+        <div class="field"><label for="f-plat">What's the offering?</label><input type="text" id="f-plat" placeholder="e.g. Daybreak" maxlength="40" autocomplete="off"></div>
+        <div class="field"><label for="f-name">Who's the partner?</label><input type="text" id="f-name" placeholder="e.g. Deloitte" maxlength="40" autocomplete="off"></div>
+      </div>
+      <div class="field"><label for="f-cust">Who are their customers?</label><input type="text" id="f-cust" placeholder="e.g. state and local agencies, hospital systems, banks" maxlength="50" autocomplete="off"></div>
+      <div class="field"><span class="lab" id="types-lab">What kind of partner?</span><div class="opts five" id="types" role="radiogroup" aria-labelledby="types-lab"></div></div>
+      <div class="field"><span class="lab" id="tier-lab">How big is the launch?</span>
+        <div class="opts three" role="radiogroup" aria-labelledby="tier-lab">
+          <label><input type="radio" name="tier" id="tier-1" value="1" checked><b>Full launch</b><span>Press, webinar, customer story, event</span></label>
+          <label><input type="radio" name="tier" id="tier-2" value="2"><b>Standard</b><span>Blog, social, webinar, enablement</span></label>
+          <label><input type="radio" name="tier" id="tier-3" value="3"><b>Light</b><span>Partner page, post, sales line</span></label>
+        </div></div>
+      <div class="field" style="max-width:340px"><label for="f-date">When does it launch?</label><input type="date" id="f-date"></div>
+      <div class="hero-actions">
+        <button class="btn primary" type="submit">Build the brief</button>
+        <button class="btn" type="button" id="reset">Load the sample</button>
+      </div>
+    </form>
+  </main>
+</div>
+<script>
+const TYPES = {
+  isv:{label:"Security software", sub:"Product integration",
+    line:"Bring {X} into {P}, so {C} can find, validate and fix more vulnerabilities in the tools they already use.",
+    why:["Frontier cyber reasoning inside the {P} workflows {C} already run","Findings validated and fixes tested before anyone acts on them","Governed access: verified users, defined scopes, logging and human review"],
+    hooks:{
+      blog:{oa:"Bringing {X} to {P}",pt:"{X}, now built into {P}",angle:"Lead with the job defenders already do in {P} every day, then show where {X} makes it faster."},
+      social:{oa:"{C} can now use {X} inside {P}. Frontier cyber defense, in the tools defenders already trust.",pt:"Find it, prove it, fix it, without leaving {P}.",angle:"Show one finding going from detection to tested fix in a short clip."},
+      webinar:{oa:"From finding to fixing: {X} in {P}",pt:"A live walkthrough of {X} in {P}",angle:"One real workflow, start to finish, run by a practitioner from each side."},
+      cs:{oa:"How a security team used {X} in {P} to fix what mattered first",pt:"{X} in {P}: an early customer story",angle:"Lead with time from validated finding to deployed fix, not the number of findings."},
+      sales:{oa:"If a customer already runs {P}, {X} adds frontier cyber reasoning to the workflow they have.",pt:"Already on {P}? Turn on {X}.",angle:"Give sellers one sentence, one demo, and clear answers on access controls."},
+      help:{oa:"Use {X} in {P}",pt:"This guide explains how to request access, verify your team, and run your first {X} workflow in {P}.",angle:"Explain the verification steps up front. They're part of the product, not a hurdle."},
+      event:{oa:"A live session at {P}'s customer conference",pt:"{X} in {P}, live on stage",angle:"Use the partner's own conference, where the room already runs {P}."}
+    },
+    kpis:[["Customers enabled","{P} customers verified for {X}","Weekly"],["First workflows run","Enabled customers who run a workflow within 30 days","Day 30"],["Validated fixes","Vulnerabilities validated and fixed through {P}, in aggregate","Day 60"],["Safeguard health","Use within approved scope, with no access incidents","Ongoing"]]
+  },
+  services:{label:"Services partner", sub:"GSI or consultancy",
+    line:"Frontier cyber defense for {C}, delivered by the {P} teams they already trust.",
+    why:["{P} practitioners stay hands-on-keyboard, and customers get the outcome","Findings are validated and fixes tested before anything ships","Governed from day one: verified access, defined scopes, human review"],
+    hooks:{
+      blog:{oa:"Bringing {X} to {C} with {P}",pt:"{P} now delivers {X}",angle:"Lead with who needs this and can't staff it, then show how {P} closes the gap."},
+      social:{oa:"Many {C} can't hire their way out of today's threats. With {P}, {X} reaches them through teams they already work with.",pt:"Our cyber teams now bring {X} to the engagements where it fits.",angle:"Have a {P} cyber leader post the same morning, in their own words."},
+      webinar:{oa:"What a {X} engagement looks like, start to finish",pt:"Inside a {P} and {X} engagement",angle:"Walk through one engagement: scope, findings, validated fixes, sign-off."},
+      cs:{oa:"How {P} and {X} helped one organization fix what mattered first",pt:"A {X} engagement, delivered by {P}",angle:"Lead with time to fix and what changed for the customer's team."},
+      sales:{oa:"For {C} already working with {P}, {X} adds frontier cyber capability to work already underway.",pt:"Add {X} to your next cyber engagement.",angle:"Arm engagement leads with a fixed-scope offer they can propose this quarter."},
+      help:{oa:"Work with a {X} partner",pt:"This page explains what {P} delivers with {X}, how engagements are scoped, and how to get started.",angle:"List {P} on the {X} partner page on launch day."},
+      event:{oa:"A briefing for {C} security leaders",pt:"Executive briefing: {X} with {P}",angle:"Small, invite-only rooms beat a keynote for this audience."}
+    },
+    kpis:[["Practitioners certified","{P} team members trained on {X} and its safeguards","Day 30"],["Engagements launched","Customer engagements using {X}","Monthly"],["Validated fixes","Vulnerabilities validated and fixed, in aggregate","Day 60"],["Safeguard health","Engagements within scope, with no access incidents","Ongoing"]]
+  },
+  mssp:{label:"Managed security", sub:"MSSP or MDR",
+    line:"{C} get frontier cyber defense around the clock, through the {P} service they already rely on.",
+    why:["{X} reasoning inside {P}'s security operations","Faster triage and investigation, with analysts making the call","Governed access, with logging and human review"],
+    hooks:{
+      blog:{oa:"{X} comes to {P}'s managed service",pt:"{P} adds {X} to managed defense",angle:"Lead with speed for customers who rely on {P} instead of a security team of their own."},
+      social:{oa:"{P} now uses {X} in the managed service {C} depend on.",pt:"Same team watching your environment. Now with {X}.",angle:"Speak to the customer's peace of mind, not the model."},
+      webinar:{oa:"Inside a managed security team running {X}",pt:"How our analysts use {X}",angle:"Show one alert going from triage to resolution."},
+      cs:{oa:"How {P} customers saw faster response with {X}",pt:"Faster answers for our customers",angle:"Lead with time to triage, reported in aggregate."},
+      sales:{oa:"Customers on {P}'s managed service get {X} as part of the service.",pt:"Your service just got faster.",angle:"Make it a renewal and expansion story, not a new product to sell."},
+      help:{oa:"{X} in {P}'s managed service",pt:"This page explains how {P} uses {X} and how customer data is handled.",angle:"Answer data-handling questions in plain language."},
+      event:{oa:"A customer roundtable with {P}'s security leads",pt:"Meet the team using {X}",angle:"Run it for existing customers first."}
+    },
+    kpis:[["Analysts enabled","{P} analysts trained on {X}","Day 14"],["Customers covered","Managed customers whose service uses {X}","Monthly"],["Time to triage","Median change after launch, in aggregate","Day 60"],["Safeguard health","Operations within scope, with no access incidents","Ongoing"]]
+  },
+  cloud:{label:"Cloud marketplace", sub:"Access through a cloud",
+    line:"Get {X} through {P}, with the account, billing and controls {C} already use.",
+    why:["Request access through the cloud account you already have","Use existing commitments and procurement","The same verification and safeguards as every {X} customer"],
+    hooks:{
+      blog:{oa:"{X} is now available on {P}",pt:"{X}, now on {P}",angle:"Lead with access: more defenders can get {X} through procurement they already have."},
+      social:{oa:"{C} can now access {X} through {P}.",pt:"Frontier cyber models, now in your {P} account.",angle:"Target security leaders and cloud buyers, with the setup steps in the comments."},
+      webinar:{oa:"Getting started with {X} on {P}",pt:"{X} on {P}: from approval to first workflow",angle:"Walk through approval, access and a first workflow."},
+      cs:{oa:"How a security team started with {X} on {P}",pt:"{X} on {P}: an early customer",angle:"Lead with how fast they got from approval to first fix."},
+      sales:{oa:"Customers can use existing {P} commitments to access {X}.",pt:"Use your {P} commitment for {X}.",angle:"Give account teams the approval steps, so deals don't stall."},
+      help:{oa:"Access {X} on {P}",pt:"This guide explains how to get approved, request access in {P}, and run your first workflow.",angle:"Make the approval steps clear up front."},
+      event:{oa:"A session at {P}'s flagship conference",pt:"{X} on {P}, live",angle:"Use the cloud's own conference, where buyers already are."}
+    },
+    kpis:[["Approved accounts","Customers approved and enabled on {P}","Weekly"],["First workflows","Enabled accounts that run a workflow within 30 days","Day 30"],["Usage through {P}","Total and month-over-month growth","Monthly"],["Safeguard health","Accounts within approved use, with no access incidents","Ongoing"]]
+  },
+  specialist:{label:"Specialist firm", sub:"Testing & research",
+    line:"{P}'s experts use {X} to test and harden systems for {C}, faster and within authorized scope.",
+    why:["Deeper testing in the same engagement window","Every action within a defined, authorized scope","Findings come with validated fixes, not just a report"],
+    hooks:{
+      blog:{oa:"Working with {P} on authorized security testing",pt:"{P} adds {X} to our testing practice",angle:"Lead with authorization and scope, then the depth it adds."},
+      social:{oa:"{P} now uses {X} in authorized testing engagements.",pt:"Deeper testing, same authorized scope.",angle:"Write for the security leaders who buy testing, not for researchers."},
+      webinar:{oa:"Authorized testing with {X}",pt:"How {P} runs a {X} engagement",angle:"Walk through scoping and safeguards before any findings."},
+      cs:{oa:"What {P} found and fixed with {X}",pt:"One engagement, start to fix",angle:"Only with customer approval. Lead with fixes shipped, not issues found."},
+      sales:{oa:"Customers who already test with {P} can add {X} to their next engagement.",pt:"Add {X} to your next test.",angle:"Pitch more depth within the same budget and window."},
+      help:{oa:"Testing with {X} partners",pt:"This page explains how {P} scopes, runs and reports {X}-assisted testing.",angle:"Be specific about authorization."},
+      event:{oa:"A talk at a major security conference",pt:"Inside an AI-assisted testing engagement",angle:"Speak to practitioners. Share the method, not technical detail on findings."}
+    },
+    kpis:[["Engagements run","Authorized engagements using {X}","Monthly"],["Validated findings fixed","Findings fixed within 30 days, in aggregate","Day 60"],["Repeat customers","Customers who book a second engagement","Day 90"],["Safeguard health","Engagements within scope, with no incidents","Ongoing"]]
+  }
+};
+
+const ASSETS = {
+  blog:["Blog post","Launch day"], social:["Social post","Launch day"], webinar:["Webinar","Launch + 2 weeks"],
+  cs:["Customer story","Launch + 90 days"], sales:["Sales line","Before launch"], help:["Partner page","Launch day"], event:["Event moment","Next major event"]
+};
+const TIER_ASSETS = {1:["blog","social","sales","help","webinar","cs","event"], 2:["blog","social","sales","help","webinar"], 3:["help","social","sales"]};
+const TIER_NAME = {1:"Full launch", 2:"Standard launch", 3:"Light launch"};
+const TIMELINES = {
+  1:[[-56,"Kickoff and joint plan","Partner marketing, partner"],[-42,"Positioning and claims approved","Product marketing, legal, safety"],[-28,"Assets in production","Brand, comms"],[-14,"Partner teams trained","Partner enablement"],[-7,"Press and posts scheduled","Comms, partner"],[0,"Launch","Everyone"],[14,"Webinar","Partner marketing"],[30,"First readout","Partner marketing, partnerships"]],
+  2:[[-35,"Kickoff and joint plan","Partner marketing, partner"],[-21,"Positioning and claims approved","Product marketing, legal, safety"],[-14,"Assets in production","Brand"],[-7,"Partner teams trained","Partner enablement"],[0,"Launch","Everyone"],[14,"Webinar","Partner marketing"],[30,"First readout","Partner marketing"]],
+  3:[[-21,"Kickoff","Partner marketing, partner"],[-7,"Partner page and post approved","Partner marketing, legal"],[0,"Launch","Partner marketing"],[30,"First readout","Partner marketing"]]
+};
+const PRINCIPLES = ["Verified, trusted access","Defined scopes, logged and monitored","Human review on every change"];
+const EXAMPLE = {plat:"Daybreak", name:"Deloitte", cust:"state and local agencies", type:"services", tier:"1", date:"2027-03-09"};
+let state = {...EXAMPLE};
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const capFirst = s => s.charAt(0).toUpperCase() + s.slice(1);
+const raw = (t, s) => t.replace(/^\{C\}/, capFirst(s.cust)).replaceAll("{P}", s.name).replaceAll("{C}", s.cust).replaceAll("{X}", s.plat);
+const fill = (t, s) => esc(raw(t, s));
+function shift(iso, days){ const d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() + days); return d; }
+const fmt = d => d.toLocaleDateString("en-US",{month:"short", day:"numeric"});
+const rel = n => n === 0 ? "Launch day" : n < 0 ? (n % 7 === 0 ? `${-n/7} week${-n/7===1?"":"s"} before` : `${-n} days before`) : `${n} days after`;
+const principlesHTML = () => `<div class="principles">${PRINCIPLES.map(p => `<span>${p}</span>`).join("")}</div>`;
+
+const SAMPLE = {
+  line:"Frontier cyber defense for the public sector, delivered by the Deloitte teams agencies already trust.",
+  why:["Deloitte practitioners stay hands-on-keyboard. Agencies get the outcome: vulnerabilities found, validated and fixed.","Built for small security teams that can't hire their way out of a growing backlog.","Governed from day one: verified access, defined scopes, logging and human review."],
+  groups:[
+    {key:"oa", title:"Published by OpenAI", sub:"Copy for OpenAI's own channels: the blog, the Daybreak partner page, OpenAI for Business on LinkedIn, and customer stories.", pill:"OpenAI channels",
+     items:[
+      {name:"Launch blog post", for:"OpenAI blog · Security", when:"Launch day",
+       hook:"Bringing Daybreak to the public sector with Deloitte",
+       angle:"Lead with the gap, not the partner. The organizations that run water, power and public services often have the smallest security teams. Deloitte is how Daybreak reaches them.",
+       drafts:[["Draft",`Today we're working with Deloitte to bring Daybreak to the public-sector teams that protect essential services.
+
+State agencies, cities and utilities run systems people depend on every day. Many of their security teams are small, and the work of finding and fixing vulnerabilities keeps growing.
+
+Through the Daybreak Cyber Partner Program, Deloitte's cyber teams can now use OpenAI's frontier cyber models in their work with these organizations. Deloitte practitioners stay hands-on-keyboard, and agencies get the outcome: vulnerabilities found, validated and fixed, with their own teams approving every change.
+
+Every engagement runs within a defined scope, with identity verification, logging, monitoring and human review.
+
+Eligible organizations can also apply for subsidized Daybreak access through our commitment to frontline defenders.
+
+Public-sector organizations can learn more on the Daybreak partner page.`]]},
+      {name:"Social post", for:"LinkedIn · OpenAI for Business", when:"Launch day",
+       hook:"The teams protecting essential services are often the smallest.",
+       angle:"Name who this is for in the first line. The partner is the how, not the headline.",
+       drafts:[["Draft",`The teams protecting water, power and public services are often the smallest.
+
+Starting today, Deloitte's cyber teams can bring Daybreak into their work with state and local agencies, so more vulnerabilities get found, validated and fixed.
+
+Frontier cyber defense, delivered by people agencies already trust.`]]},
+      {name:"Co-hosted webinar", for:"Webinar · promoted by both teams", when:"Two weeks after launch",
+       hook:"From finding to fixing: a Daybreak engagement, start to finish",
+       angle:"Show the process, not a highlight reel. Security leaders want to see where the safeguards sit before they care about results.",
+       drafts:[["Abstract",`In 30 minutes, we'll walk through one Daybreak engagement from start to finish: setting the scope, finding and validating vulnerabilities, testing fixes, and handing changes to the agency's team for approval.
+
+Hosted by OpenAI's cyber team and Deloitte's government cyber practice. Built for state and local security leaders and their teams.`]]},
+      {name:"Customer story", for:"OpenAI customer stories", when:"90 days after launch",
+       hook:"How [agency] cleared its most critical backlog in 90 days",
+       angle:"The story is a small team getting ahead for the first time. Lead with time to fix, not the number of findings.",
+       drafts:[["Who to feature and how",`Feature: a state agency or regional utility with a small security team and a long backlog of older systems.
+
+Story: Deloitte ran a 90-day engagement with Daybreak. The agency's team approved every change and cleared its most critical backlog without adding headcount.
+
+Lead metric: time from validated finding to deployed fix. Supporting metric: critical vulnerabilities fixed in the first 90 days.
+
+Clear every detail with the agency before anything is published.`]]}
+     ]},
+    {key:"pt", title:"Partner launch kit, sent to Deloitte", sub:"What we hand Deloitte's marketing and cyber teams two weeks before launch. Suggested copy they adapt in their own voice, with both sides approving final claims.", pill:"For Deloitte's team",
+     items:[
+      {name:"Approved messaging", for:"Internal · Deloitte marketing and comms", when:"Kickoff",
+       hook:"The facts every Deloitte asset should get right",
+       angle:"In cyber, one loose claim can undo a launch. One source of truth keeps every asset accurate on what the work does and how it's governed.",
+       drafts:[["Approved claims",`What it is: Deloitte cyber teams use OpenAI's Daybreak models in engagements with public-sector organizations, through the Daybreak Cyber Partner Program.
+
+Approved proof points:
+• Deloitte practitioners stay hands-on-keyboard, and agencies get the outcome
+• Findings are validated and fixes are tested before anything ships
+• Every engagement runs within a defined scope, with verification, logging, monitoring and human review`],
+        ["Words to use, and words to avoid",`Use: helps find, validate and fix · defenders · within scope · human review · trusted access
+
+Avoid: autonomous · replaces your team · guarantees · unhackable · any detail about offensive capability`],
+        ["About Daybreak boilerplate",`Daybreak brings together OpenAI's frontier cyber models, Codex Security and a network of security partners to help defenders find, validate and fix vulnerabilities before attackers can exploit them. Access to advanced capabilities is governed through verification, defined scopes, monitoring and human oversight.`]]},
+      {name:"Suggested leader post", for:"LinkedIn · Deloitte cyber leader", when:"Launch day, same morning",
+       hook:"Most public-sector security teams don't have a hiring problem they can solve this year. They have a backlog.",
+       angle:"Deloitte speaks as the practitioner. Its post can be blunter about the problem than OpenAI's, because it's the one in the room with agencies every week.",
+       drafts:[["Suggested copy",`Most public-sector security teams don't have a hiring problem they can solve this year. They have a backlog.
+
+Starting today, our cyber teams are bringing OpenAI's Daybreak into our work with state and local agencies. Our practitioners stay hands-on, and agencies get vulnerabilities found, validated and fixed, with their own teams approving every change.
+
+Proud to be working with OpenAI on this.`]]},
+      {name:"Executive briefing invite", for:"Email · Deloitte public-sector clients", when:"Launch day",
+       hook:"Briefing: Daybreak for state and local agencies",
+       angle:"Invite, don't announce. Security leaders want a closed room and real questions answered, not a product email.",
+       drafts:[["Suggested copy",`Subject: Briefing: Daybreak for state and local agencies
+Preview: 45 minutes with Deloitte and OpenAI's cyber team.
+
+We'd like to invite you to a short briefing for state and local security leaders on how Deloitte is using OpenAI's Daybreak in public-sector engagements.
+
+We'll cover what an engagement looks like, how access and safeguards work, and how eligible agencies can apply for subsidized access.
+
+[Request an invitation]`]]},
+      {name:"Engagement lead kit", for:"Internal · Deloitte engagement leads", when:"Two weeks before launch",
+       hook:"Start with one critical system and 90 days.",
+       angle:"Engagement leads don't need a new pitch. They need one fixed-scope offer, the right clients to call first, and answers to the three questions every agency will ask.",
+       drafts:[["Pitch and who to call first",`The pitch: if an agency already works with Deloitte on cyber, Daybreak adds frontier capability to work already underway. Start with a 90-day, fixed-scope engagement on one critical system.
+
+Call first: state agencies, municipal utilities and transit authorities with small security teams and older systems.`],
+        ["Three questions agencies will ask",`"Will an AI model change our systems on its own?"
+No. Deloitte practitioners run the work within an agreed scope, and your team approves every change.
+
+"How is access controlled?"
+Daybreak uses identity verification, defined scopes, logging, monitoring and human review.
+
+"We don't have budget for this."
+Eligible agencies can apply for OpenAI's subsidized Daybreak access. We'll help you check eligibility and start with a small, fixed scope.`]]}
+     ]}
+  ],
+  plays:[
+    ["Offer","The 90-day Patch Sprint","A fixed-scope Deloitte engagement on one critical system: validated findings, tested fixes, and a readout for agency leaders."],
+    ["Access","Help agencies apply for subsidized access","Deloitte teams walk eligible agencies through applying for OpenAI's subsidized Daybreak access, so budget isn't the first blocker."],
+    ["Community","State security leader roundtables","Small, closed-door sessions with Deloitte and OpenAI's cyber team, timed to the major public-sector technology conferences."],
+    ["Proof","Fixes for shared open-source software","Deloitte teams contribute fixes to the open-source software agencies depend on, through OpenAI's Patch the Planet initiative. Every fix is a public proof point."]
+  ],
+  score:[
+    ["Adoption",[
+      ["Deloitte practitioners certified","Trained on Daybreak and its safeguards","150","500","Partner enablement"],
+      ["Public-sector engagements launched","Agencies with an active Daybreak engagement","5","25","Partnerships"],
+      ["Agencies applying for subsidized access","Applications supported by Deloitte teams","10","40","Partner marketing"]]],
+    ["Outcomes",[
+      ["Critical vulnerabilities fixed","Validated and deployed, reported in aggregate","Baseline","+3x","Deloitte, OpenAI cyber"],
+      ["Time to fix","Median time from validated finding to deployed fix","Baseline","−50%","Deloitte, OpenAI cyber"],
+      ["Customer stories cleared","Agencies approved to be named publicly","0","2","Partner marketing"]]],
+    ["Safety",[
+      ["Engagements within scope","No access or scope incidents","100%","100%","OpenAI cyber, Deloitte"]]]
+  ],
+  rules:[
+    ["","Scale it","Engagements and fixes at or above target by day 90.","Expand to more states and add a critical-infrastructure track."],
+    ["fix","Fix it","Practitioners are certified, but engagements are under target.","Simplify the offer: one fixed scope, one price, one readout."],
+    ["down","Pause it","Any scope or access incident, or engagements under half of target.","Pause new engagements, fix the process, then relaunch with standard support."]
+  ]
+};
+
+const draftStore = [];
+function wireCopy(){
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => {
+    const st = document.getElementById("status");
+    try { navigator.clipboard.writeText(draftStore[+b.dataset.copy]).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); }, () => st.textContent = "Your browser blocked copying. Select the text and copy it instead."); }
+    catch(e){ st.textContent = "Your browser blocked copying. Select the text and copy it instead."; }
+  }));
+}
+
+function renderSample(){
+  const s = state;
+  const launch = shift(s.date, 0).toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"});
+  draftStore.length = 0;
+  const card = a => `<article class="asset">
+      <div><div class="chan">${esc(a.for)}</div><div class="who3"><span>${a.when}</span></div>
+        <h3>${esc(a.hook)}</h3>
+        <div class="ang"><b>${esc(a.name)} · the angle</b>${esc(a.angle)}</div></div>
+      <div>${a.drafts.map(([lbl, txt]) => { draftStore.push(txt); return `<div class="draft"><div class="lbl2"><span>${esc(lbl)}</span><button class="mini" type="button" data-copy="${draftStore.length-1}">Copy</button></div>${esc(txt)}</div>`; }).join("")}</div>
+    </article>`;
+  const groups = SAMPLE.groups.map(g => `<section class="grp-block ${g.key}">
+      <div class="grp-head"><span class="pill ${g.key === "oa" ? "pl" : "pt"}">${g.pill}</span><h3>${g.title}</h3><p>${g.sub}</p></div>
+      ${g.items.map(card).join("")}</section>`).join("");
+  const plays = SAMPLE.plays.map(([k,h,p]) => `<div class="play"><div class="k">${k}</div><h3>${h}</h3><p>${esc(p)}</p></div>`).join("");
+  const rows = SAMPLE.score.map(([g, rs]) => `<tr class="grp"><td colspan="4">${g}</td></tr>` + rs.map(r => `<tr><td>${r[0]}<small>${r[1]}</small></td><td class="num">${r[2]}</td><td class="num">${r[3]}</td><td>${r[4]}</td></tr>`).join("")).join("");
+  const rules = SAMPLE.rules.map(([c,h,when,then]) => `<div class="rule ${c}"><h3>${h}</h3><p><b>If:</b> ${when}</p><p style="margin-top:6px"><b>Then:</b> ${then}</p></div>`).join("");
+  const tl = TIMELINES[s.tier].map(([d, w, o]) => `<div class="ms${d===0?" launch":d>0?" after":""}"><div class="d">${fmt(shift(s.date, d))}</div><div class="r">${rel(d)}</div><div class="w">${w}</div><div class="o">${o}</div></div>`).join("");
+
+  document.getElementById("view-brief").innerHTML = `
+    <section class="hero">
+      <div class="eyebrow">Partner launch brief</div>
+      <h1>Daybreak<span class="x">×</span>Deloitte</h1>
+      <div class="meta"><span>Services partner</span><span>Full launch</span><span>Launches ${launch}</span><span><span class="tag">Hypothetical partnership</span></span></div>
+      <p class="focus"><b>Focus:</b> state and local agencies and the utilities that run essential services.</p>
+    </section>
+
+    <section class="line">
+      <div class="eyebrow">The one line</div>
+      <blockquote>${esc(SAMPLE.line)}</blockquote>
+      <div class="why">${SAMPLE.why.map((w,i)=>`<div><b>0${i+1}</b>${esc(w)}</div>`).join("")}</div>
+    </section>
+    ${principlesHTML()}
+
+    <div class="sec"><h2>Launch assets, ready to send</h2></div>
+    ${groups}
+    <div style="height:48px"></div>
+
+    <div class="sec"><h2>After launch: getting agencies to start</h2></div>
+    <section class="plays">${plays}</section>
+
+    <div class="sec"><h2>Timeline</h2></div>
+    <section class="tl"><div class="track">${tl}</div></section>
+
+    <div class="sec"><h2>Scorecard</h2></div>
+    <div class="sc-wrap"><table class="sc"><thead><tr><th>Metric</th><th class="num">Day 30</th><th class="num">Day 90</th><th>Owner</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <section class="rules">${rules}</section>
+    <p class="footnote">A hypothetical launch, built from OpenAI's public Daybreak materials. Targets are illustrative and would be set with the partner at kickoff.</p>
+    <p class="status" id="status" role="status"></p>`;
+  wireCopy();
+}
+
+function renderBrief(){
+  if (JSON.stringify(state) === JSON.stringify(EXAMPLE)) { renderSample(); return; }
+  const T = TYPES[state.type], s = state;
+  const launch = shift(s.date, 0).toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"});
+  const hooks = TIER_ASSETS[s.tier].map(k => {
+    const h = T.hooks[k], a = ASSETS[k];
+    const plWho = k === "sales" ? `For ${esc(s.plat)} sellers` : k === "help" ? "Title" : `${esc(s.plat)} voice`;
+    const ptWho = k === "sales" ? `For ${esc(s.name)} teams` : k === "help" ? "Opening line" : `${esc(s.name)} voice`;
+    return `<article class="hook"><div class="name"><h3>${a[0]}</h3><span>${a[1]}</span></div>
+      <div class="v pl"><small>${plWho}</small>${fill(h.oa, s)}</div>
+      <div class="v pt"><small>${ptWho}</small>${fill(h.pt, s)}</div>
+      <div class="angle"><b>How to run it</b> · ${fill(h.angle, s)}</div></article>`;
+  }).join("");
+  const tl = TIMELINES[s.tier].map(([d, w, o]) => `<div class="ms${d===0?" launch":d>0?" after":""}">
+      <div class="d">${fmt(shift(s.date, d))}</div><div class="r">${rel(d)}</div><div class="w">${w}</div><div class="o">${o}</div></div>`).join("");
+  const kpis = T.kpis.map((k,i) => `<div class="kpi"><div class="n">${i+1}</div><h3>${fill(k[0], s)}</h3><p>${fill(k[1], s)}</p><div class="c">Check · ${k[2]}</div></div>`).join("");
+
+  document.getElementById("view-brief").innerHTML = `
+    <section class="hero">
+      <div class="eyebrow">Partner launch brief</div>
+      <h1>${esc(s.plat)}<span class="x">×</span>${esc(s.name)}</h1>
+      <div class="meta"><span>${T.label}</span><span>${TIER_NAME[s.tier]}</span><span>Launches ${launch}</span></div>
+      <div class="hero-actions"><a class="btn primary" href="#build">Plan another launch</a><button class="btn" type="button" id="copy">Copy brief</button></div>
+    </section>
+    <section class="line">
+      <div class="eyebrow">The one line</div>
+      <blockquote>${fill(T.line, s)}</blockquote>
+      <div class="why">${T.why.map((w,i)=>`<div><b>0${i+1}</b>${fill(w, s)}</div>`).join("")}</div>
+    </section>
+    ${principlesHTML()}
+    <div class="sec"><h2>Hooks</h2><div class="legend"><span><i style="background:var(--violet)"></i>${esc(s.plat)}</span><span><i style="background:#d9cdb8"></i>${esc(s.name)}</span></div></div>
+    <section class="hooks">${hooks}</section>
+    <div class="sec"><h2>Timeline</h2></div>
+    <section class="tl"><div class="track">${tl}</div></section>
+    <div class="sec"><h2>Scorecard</h2></div>
+    <section class="kpis">${kpis}</section>
+    <p class="status" id="status" role="status"></p>`;
+  document.getElementById("copy").addEventListener("click", copyText);
+}
+
+function copyText(){
+  const T = TYPES[state.type], s = state, f = t => raw(t, s);
+  let out = `${s.plat} × ${s.name}: ${TIER_NAME[s.tier]}, launches ${s.date}\n\nThe one line: ${f(T.line)}\n\n`;
+  out += TIER_ASSETS[s.tier].map(k => `${ASSETS[k][0]}\n  ${s.plat}: ${f(T.hooks[k].oa)}\n  ${s.name}: ${f(T.hooks[k].pt)}\n  How to run it: ${f(T.hooks[k].angle)}`).join("\n\n");
+  out += "\n\nTimeline\n" + TIMELINES[s.tier].map(([d,w]) => `  ${fmt(shift(s.date,d))} (${rel(d)}): ${w}`).join("\n");
+  out += "\n\nScorecard\n" + T.kpis.map(k => `  ${f(k[0])}: ${f(k[1])}`).join("\n");
+  const st = document.getElementById("status");
+  const fail = () => st.textContent = "Your browser blocked copying. Select the text and copy it instead.";
+  try { navigator.clipboard.writeText(out).then(() => st.textContent = "Copied. Paste it into a doc or tracker.", fail); } catch(e){ fail(); }
+}
+
+document.getElementById("types").innerHTML = Object.entries(TYPES).map(([k,t]) =>
+  `<label><input type="radio" name="type" id="type-${k}" value="${k}"${k==="services"?" checked":""}><b>${t.label}</b><span>${t.sub}</span></label>`).join("");
+document.getElementById("f-plat").value = EXAMPLE.plat;
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  state = {
+    plat: v("f-plat") || EXAMPLE.plat, name: v("f-name") || "Your partner", cust: v("f-cust") || "their customers",
+    type: document.querySelector('input[name="type"]:checked').value,
+    tier: document.querySelector('input[name="tier"]:checked').value,
+    date: v("f-date") || EXAMPLE.date
+  };
+  renderBrief(); location.hash = "brief";
+});
+document.getElementById("reset").addEventListener("click", () => {
+  const set = (id, val) => document.getElementById(id).value = val;
+  set("f-plat", EXAMPLE.plat); set("f-name", EXAMPLE.name); set("f-cust", EXAMPLE.cust); set("f-date", EXAMPLE.date);
+  document.getElementById("type-services").checked = true; document.getElementById("tier-1").checked = true;
+  state = {...EXAMPLE}; renderBrief(); location.hash = "brief";
+});
+
+function route(){
+  const v = location.hash === "#build" ? "build" : "brief";
+  document.getElementById("view-brief").hidden = v !== "brief";
+  document.getElementById("view-build").hidden = v !== "build";
+  ["brief","build"].forEach(n => { const t = document.getElementById("tab-" + n); n === v ? t.setAttribute("aria-current","page") : t.removeAttribute("aria-current"); });
+}
+window.addEventListener("hashchange", () => { route(); window.scrollTo(0,0); });
+renderBrief(); route();
+</script>
+</body>
+</html>
